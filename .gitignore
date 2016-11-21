@@ -1,0 +1,12 @@
+
+flats/target/**
+flats/.settings/**
+
+.metadata/**
+.recommenders/**
+RemoteSystemsTempFiles/**
+Servers/**
+*.classpath
+*.jar
+*.project
+*.class
