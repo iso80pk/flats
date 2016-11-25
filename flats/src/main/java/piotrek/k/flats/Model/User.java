@@ -1,13 +1,18 @@
 package piotrek.k.flats.Model;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 public class User {
@@ -15,11 +20,40 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotNull
+	@Column(length=40)
+	private String firstName;
+	
+	@Column(length=40)
+	private String lastName;
+	
+	@NotNull
+	@Column(unique = true, length=35)
 	private String username;
+	
+	@NotNull
+	@Column(length=60)
 	private String password;
-	private Boolean enabled;
-	@OneToMany(mappedBy = "user",fetch=FetchType.EAGER)
-	List<Statistics> statistics;
+
+	private boolean enabled;
+	
+	@NotNull
+	@Column(unique = true,length=60)
+	private String email;
+
+	@Column(length=15)
+	private String phoneNumber;
+
+	private Date signUpDate;
+
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "user")
+	private List<Statistics> statistics;
+
+	@LazyCollection(LazyCollectionOption.TRUE)
+	@OneToMany(mappedBy = "user")
+	private List<Roles> roles;
 
 	public Long getId() {
 		return id;
@@ -27,6 +61,22 @@ public class User {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public String getUsername() {
@@ -45,12 +95,36 @@ public class User {
 		this.password = password;
 	}
 
-	public Boolean getEnabled() {
+	public boolean isEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(Boolean enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public Date getSignUpDate() {
+		return signUpDate;
+	}
+
+	public void setSignUpDate(Date signUpDate) {
+		this.signUpDate = signUpDate;
 	}
 
 	public List<Statistics> getStatistics() {
@@ -60,7 +134,15 @@ public class User {
 	public void setStatistics(List<Statistics> statistics) {
 		this.statistics = statistics;
 	}
-	
+
+	public List<Roles> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Roles> roles) {
+		this.roles = roles;
+	}
+
 	
 
 }

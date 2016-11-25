@@ -17,7 +17,7 @@
 		<c:url value="/login" />
 	</c:set>
 	<form method="post" action="${loginUrl}">
-		Login: <input type="text" name="email" /></br> Hasło: <input
+		Login: <input type="text" name="username" /></br> Hasło: <input
 			type="password" name="password" /> </br> </br> <input type="hidden"
 			name="${_csrf.parameterName}" value="${_csrf.token}" /> <input
 			type="submit" value="Zaloguj" />

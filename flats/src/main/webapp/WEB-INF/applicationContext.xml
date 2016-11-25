@@ -26,6 +26,7 @@
 	<context:annotation-config /> <!-- To na przyszłość, pozwoli nam korzystać z adnotacji także w klasach, 
 		które byśmy skonfigurowali ręcznie -->
 	<tx:annotation-driven />
+	<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

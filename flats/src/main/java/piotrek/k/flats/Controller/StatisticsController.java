@@ -41,13 +41,13 @@ public class StatisticsController {
 		return "statisticsList";
 	}
 
-	@Secured({ "ROLE_USER" })
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String statisticsFormGet() {
 		return "statisticsForm";
 	}
 
-	@Secured({ "ROLE_USER" })
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String statisticsFormPost(@ModelAttribute("form") @Valid StatisticsDTO form, BindingResult result) {
 		if (result.hasErrors())
@@ -68,7 +68,7 @@ public class StatisticsController {
 		}
 	}
 
-	@Secured({ "ROLE_USER" })
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/delete-{id}")
 	public String statisticDeleteById(@PathVariable("id") Long idStatistic) {
 		statisticsService.deleteStatistic(idStatistic);
