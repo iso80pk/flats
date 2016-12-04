@@ -29,4 +29,8 @@ public class RolesService {
 	public void saveRole(Roles roles){
 		iRolesInterface.save(roles);
 	}
+	
+	public void deleteRole(Long id){
+		iRolesInterface.delete(id);
+	}
 }

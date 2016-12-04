@@ -13,7 +13,7 @@
 	
 	<c:if test="${pageContext.request.method=='POST'}">
 		
-		<font color="red">Login oraz hasło powinny zaierać od 4 do 35 znaków.</br> Żadne z pól nie może pozostać puste</font></div>
+		<font color="red">Login oraz hasło powinny zaierać od 4 do 35 znaków.<br/> Żadne z pól nie może pozostać puste</font>
 	</c:if>
 	<form:form method="POST" modelAttribute="form">
 		<table style="text-align: right;">

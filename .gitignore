@@ -2,6 +2,8 @@ flats/.metadata/**
 flats/target/**
 flats/.settings/**
 
+/flats/src/main/resources.application.properties
+
 .metadata/**
 .recommenders/**
 RemoteSystemsTempFiles/**

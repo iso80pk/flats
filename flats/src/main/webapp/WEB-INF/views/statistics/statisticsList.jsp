@@ -50,9 +50,9 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	</br>
+	<br/>
 	<center>
-	<a href="../">Strona główna</a></br></br>
+	<a href="../">Strona główna</a><br/><br/>
 	<a href="add">Dodaj nowe dane</a>
 	</center>
 	

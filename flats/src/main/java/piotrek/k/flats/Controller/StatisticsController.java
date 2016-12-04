@@ -38,20 +38,20 @@ public class StatisticsController {
 	@RequestMapping(value = "/")
 	public String allStatistics(Model model) {
 		model.addAttribute("statistics", statisticsService.getAllStatistics());
-		return "statisticsList";
+		return "statistics/statisticsList";
 	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String statisticsFormGet() {
-		return "statisticsForm";
+		return "statistics/statisticsForm";
 	}
 
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String statisticsFormPost(@ModelAttribute("form") @Valid StatisticsDTO form, BindingResult result) {
 		if (result.hasErrors())
-			return "statisticsForm";
+			return "statistics/statisticsForm";
 		else {
 			Statistics statistics = new Statistics();
 			statistics.setAreaName(form.getAreaName());

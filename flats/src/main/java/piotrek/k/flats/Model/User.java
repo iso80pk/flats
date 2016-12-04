@@ -9,12 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
+@Table(name="user")
 public class User {
 
 	@Id
@@ -47,11 +49,11 @@ public class User {
 
 	private Date signUpDate;
 
-	@LazyCollection(LazyCollectionOption.FALSE)
+	@LazyCollection(LazyCollectionOption.FALSE) //?
 	@OneToMany(mappedBy = "user")
 	private List<Statistics> statistics;
 
-	@LazyCollection(LazyCollectionOption.TRUE)
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user")
 	private List<Roles> roles;
 

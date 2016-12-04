@@ -5,7 +5,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
-public class UserDTO {
+public class EditUserDTO {
 
 	@NotEmpty
 	@Size(min = 1, max = 40)
@@ -18,23 +18,12 @@ public class UserDTO {
 	@Size(min = 4, max = 35)
 	private String username;
 
-	@NotEmpty
-	@Size(min = 4, max = 35)
-	private String password;
-
-	@NotEmpty
-	@Size(min = 4, max = 30)
-	private String repeatPassword;
+	private boolean enabled;
 
 	@NotEmpty
 	@Email
 	@Size(min = 3, max = 60)
 	private String email;
-
-	@NotEmpty
-	@Email
-	@Size(min = 3, max = 60)
-	private String repeatEmail;
 
 	@Size(max = 15)
 	private String phoneNumber;
@@ -63,21 +52,14 @@ public class UserDTO {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public String getRepeatPassword() {
-		return repeatPassword;
-	}
-
-	public void setRepeatPassword(String repeatPassword) {
-		this.repeatPassword = repeatPassword;
-	}
 
 	public String getEmail() {
 		return email;
@@ -87,14 +69,6 @@ public class UserDTO {
 		this.email = email;
 	}
 
-	public String getRepeatEmail() {
-		return repeatEmail;
-	}
-
-	public void setRepeatEmail(String repeatEmail) {
-		this.repeatEmail = repeatEmail;
-	}
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
@@ -102,6 +76,6 @@ public class UserDTO {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-
+	
 	
 }

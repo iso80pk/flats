@@ -11,10 +11,7 @@
 <body>
 	<p style="width: 100%; text-align: center;">Uzupełniasz statystyki</p>
 	
-	<c:if test="${pageContext.request.method=='POST'}">
-		
-		<font color="red">Formularz zawiera błędy</font></div>
-	</c:if>
+	<c:if test="${pageContext.request.method=='POST'}">	Formularz zawiera błędy	</c:if>
 	
 	<form:form method="POST" modelAttribute="form">
 		<table style="text-align: right;">
