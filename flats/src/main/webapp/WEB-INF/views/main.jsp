@@ -24,6 +24,9 @@
 		<sec:authorize access="hasRole('ROLE_ADMIN')">
 		<br/> <a href="users/">Edytuj użytkowników</a>
 		</sec:authorize>
+		<sec:authorize access="hasRole('ROLE_USER')">
+		<br/> <a href="realEstate/">Moje nieruchomości</a>
+		</sec:authorize>
 	
 	
 
