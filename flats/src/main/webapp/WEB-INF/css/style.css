@@ -1,0 +1,16 @@
+html, body{
+	background-color: #000000;
+}
+.container{
+	background-color: #dfdfdf;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+.footer{
+	background-color: #101010;
+	border-radius: 5px;
+	padding: 5px;
+	margin-top: 15px;
+	color: #c0c0c0;
+}

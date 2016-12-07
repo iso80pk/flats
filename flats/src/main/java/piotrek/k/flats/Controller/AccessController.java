@@ -33,18 +33,18 @@ public class AccessController {
 	
 	@RequestMapping(value="/")
 	public String main() {
-		return "main";
+		return "main/main";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String registrationGet() {
-		return "registrationForm";
+		return "main/registrationForm";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
 	public String registrationPost(@ModelAttribute("form") @Valid UserDTO form, BindingResult result) {
 		if (result.hasErrors() || userService.isUserWithEmailOrUsername(form.getUsername(), form.getEmail()))
-			return "registrationForm";
+			return "main/registrationForm";
 		else {
 			User user = new User();
 			Roles roles = new Roles();
@@ -69,7 +69,7 @@ public class AccessController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
-		return "login";
+		return "main/login";
 	}
 
 	

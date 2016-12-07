@@ -2,134 +2,206 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Moje nieruchomości</title>
-</head>
-<body>
+
+<jsp:include page="../main/header.jsp" />
 
 
-
-	<form:form method="POST" modelAttribute="form">
-		<table style="text-align: right;">
-			<tbody>
-				<tr>
-					<td>Lokalizacja:</td>
-					<td><form:input type="text" path="location" name="location" /></td>
-				</tr>
-				<tr>
-					<td>Typ nieruchomości:</td>
-					<td><form:select path="realEstateType" items="${realEstateTypes}" /></td>
-				</tr>
-				<tr>
-					<td>Powierzchnia [m2]:</td>
-					<td><form:input type="text" path="floorArea" name="floorArea" /></td>
-				</tr>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="container">
 
 
-				<tr>
-					<td>Cena:</td>
-					<td><form:input type="text" path="price" name="price" /></td>
-				</tr>
+			<form:form method="POST" class="form-horizontal"
+				modelAttribute="form">
 
-				<tr>
-					<td>ilość pokoi:</td>
-					<td><form:input type="text" path="numberOfRooms"
-							name="numberOfRooms" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Lokalizacja</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="location" name="location"
+							class="form-control" placeholder="Podaj lokalizację" />
+					</div>
+				</div>
 
-				<tr>
-					<td>wiek nieruchomości:</td>
-					<td><form:input type="text" path="howOld" name="howOld" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Typ nieruchomości</label>
+					<div class="col-sm-6">
+						<form:select path="realEstateType" items="${realEstateTypes}"
+							class="form-control" />
+					</div>
+				</div>
 
-				<tr>
-					<td>piętro:</td>
-					<td><form:input type="text" path="floor" name="floor" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Powierzchnia [m2]</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="floorArea" name="floorArea"
+							class="form-control" placeholder="Podaj powierzchnię" />
+					</div>
+				</div>
 
-				<tr>
-					<td>Garaż</td>
-					<td><form:checkbox path="garage" /></td>
-				<tr>
-				<tr>
-					<td>Parking</td>
-					<td><form:checkbox path="parking" /></td>
-				<tr>
-				<tr>
-					<td>Ogród</td>
-					<td><form:checkbox path="garden" /></td>
-				<tr>
-				<tr>
-					<td>Piwnica</td>
-					<td><form:checkbox path="cellar" /></td>
-				<tr>
-				<tr>
-					<td>Monitoring</td>
-					<td><form:checkbox path="monitoring" /></td>
-				<tr>
-				<tr>
-					<td>Winda</td>
-					<td><form:checkbox path="lift" /></td>
-				<tr>
-				<tr>
-					<td>Dostęp do transportu publicznego:</td>
-					<td><form:checkbox path="accessToPublicTransport" /></td>
-				<tr>
-				<tr>
-					<td>Szacowany wkład własny <br /> (remont, umeblowanie...):
-					</td>
-					<td><form:input type="text" path="ownContribution"
-							name="ownContribution" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Cena</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="price" name="price"
+							class="form-control" placeholder="Podaj cenę nieruchomości" />
+					</div>
+				</div>
 
-				<tr>
-					<td>ile kilometrów dziennie <br> musisz dojeżdżać
-						prytatnym <br /> środkiem transportu:
-					</td>
-					<td><form:input type="text" path="kmPerDay" name="kmPerDay" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">ilość pokoi</label>
+					<div class="col-sm-6">
+					<form:input type="text" path="numberOfRooms" name="numberOfRooms"
+							class="form-control" placeholder="Podaj ilość pokoi" />
+					</div>
+				</div>
 
-				<tr>
-					<td>miesięczne koszty utrzymania<br /> (czynsz, fundusz
-						remontowy,<br /> podatek od nieruchomości,<br /> opłata
-						gruntowa.):
-					</td>
-					<td><form:input type="text" path="maintenanceCosts"
-							name="maintenanceCosts" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">wiek nieruchomości</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="howOld" name="howOld"
+							class="form-control" placeholder="Podaj wiek mieszkania" />
+					</div>
+				</div>
 
-				<tr>
-					<td>Średnia cena nieruchomości w okolicy <br /> 
-					<a href="https://ceny.szybko.pl">Sprawdź</a>
-					</td>
-					<td><form:input type="text" path="averagePriceInArea"
-							name="averagePriceInArea" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">piętro</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="floor" name="floor"
+							class="form-control" placeholder="Podaj piętro" />
+					</div>
+				</div>
 
-				<tr>
-					<td>Odnośnik do ogłoszenia</td>
-					<td><form:input type="text" path="advertismentsLink"
-							name="advertismentsLink" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">ilość pokoi</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="numberOfRooms" name="numberOfRooms"
+							class="form-control" placeholder="Podaj liczbę pokoi" />
+					</div>
+				</div>
 
-				<tr>
-					<td>Notatki</td>
-					<td><form:input type="text" path="notes" name="notes" /></td>
-				</tr>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Garaż</label>
+					<div class="col-sm-6">
+						<form:checkbox path="garage" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Parking</label>
+					<div class="col-sm-6">
+						<form:checkbox path="parking" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Ogród</label>
+					<div class="col-sm-6">
+						<form:checkbox path="garden" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Piwnica</label>
+					<div class="col-sm-6">
+						<form:checkbox path="cellar" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Monitoring</label>
+					<div class="col-sm-6">
+						<form:checkbox path="monitoring" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Winda</label>
+					<div class="col-sm-6">
+						<form:checkbox path="lift" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Dostęp do transportu publicznego</label>
+					<div class="col-sm-6">
+						<form:checkbox path="accessToPublicTransport" />
+					</div>
+				</div>
 
-				<tr>
-					<td colspan="2"><input type="submit" value="Zatwierdź" /></td>
-				</tr>
-			</tbody>
-		</table>
-	</form:form>
-	<br/>
-	<a href="../realEstate/">Moje nieruchomości</a><br/>
-	<br/>
-	<a href="../">Strona główna</a><br/>
-	
-</body>
-</html>
+				<div class="form-group">
+					<label class="control-label col-sm-4">Szacowany wkład własny <br /> (remont, umeblowanie...)</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="ownContribution" name="ownContribution"
+							class="form-control" placeholder="Podaj przybliżone koszty remonyu, umeblowania itp" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">ile kilometrów dziennie <br>
+					 musisz dojeżdżać prytatnym <br />
+					 środkiem transportu</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="ownContribution" name="ownContribution"
+							class="form-control" placeholder="Podaj dystans w km" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">miesięczne koszty utrzymania<br />
+					 (czynsz, funduszremontowy,<br />
+					  podatek od nieruchomości,<br /> 
+					  opłata gruntowa.)
+						</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="maintenanceCosts" name="maintenanceCosts"
+							class="form-control" placeholder="Podaj przybliżone koszty" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">Średnia cena za 1m2 nieruchomości w okolicy <br />
+					 <a target="_blank"	href="https://ceny.szybko.pl">Sprawdź</a>
+					</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="averagePriceInArea" name="averagePriceInArea"
+							class="form-control" placeholder="Podaj cenę za 1m2" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">
+					Link do ogłoszenia
+					</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="advertismentsLink" name="advertismentsLink"
+							class="form-control" placeholder="wpisz aders, aby łatwiej sprawdzić, czy ogłoszenie jest jeszcze aktywne" />
+					</div>
+				</div>
+				
+				<div class="form-group">
+					<label class="control-label col-sm-4">
+					Notatki
+					</label>
+					<div class="col-sm-6">
+						<form:input type="text" path="notes" name="notes"
+							class="form-control" placeholder="miejsce na notatki" />
+					</div>
+				</div>
+
+				
+				<div class="form-group">
+					<div class="col-sm-offset-4 col-sm-4">
+						<button type="submit" class="btn btn-default">Zatwierdź</button>
+					</div>
+				</div>
+				
+			</form:form>
+			
+			<br /> <a href="../realEstate/">Moje nieruchomości</a><br /> <br />
+			<a href="../">Strona główna</a><br />
+
+
+		</div>
+	</div>
+</div>
+
+<jsp:include page="../main/footer.jsp" />
