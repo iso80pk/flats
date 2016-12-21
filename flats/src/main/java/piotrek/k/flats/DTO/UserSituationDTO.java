@@ -8,38 +8,38 @@ import javax.validation.constraints.NotNull;
 
 public class UserSituationDTO {
 	
-	@NotNull
-	@DecimalMin("0.1")
-	@DecimalMax("150.0")
+	@NotNull(message="Pole jest wymagane")
+	@DecimalMin(value = "0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "150.0", message = "Minimalna wartoœæ to 150")
 	private Double nextRemoval;
 	
-	@NotNull
+	@NotNull(message="Pole jest wymagane")
 	@Min(1)
 	@Max(50)
 	private Integer numberOfFamilyMembers;
 	
-	@NotNull
-	@DecimalMin("10.0")
-	@DecimalMax("99999999.99")
+	@NotNull(message="Pole jest wymagane")
+	@DecimalMin(value = "10.0", message = "Minimalna wartoœæ to 10")
+	@DecimalMax(value = "99999999.99", message = "Minimalna wartoœæ to 99999999")
 	private Double maxPriceOfRealEstate;
 	
-	@NotNull
-	@DecimalMin("0.0")
-	@DecimalMax("99999999.99")
+	@NotNull(message="Pole jest wymagane")
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "99999999.99", message = "Minimalna wartoœæ to 99999999")
 	private Double maxAdditionalCosts; //? utrzymanie+ remonty+.. na jaki okres?
 	
 	
-	@DecimalMin("3.0")
-	@DecimalMax("10000.0")
+	@DecimalMin(value = "3.0", message = "Minimalna wartoœæ to 3")
+	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000.0")
 	private Double minAreaRealEstate;
 	
 
-	@DecimalMin("3.0")
-	@DecimalMax("10000.0")
+	@DecimalMin(value = "3.0", message = "Minimalna wartoœæ to 3")
+	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000")
 	private Double maxAreaRealEstate;
 	
-	@DecimalMin("0.0")
-	@DecimalMax("10000.0")
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000")
 	private Double costOfPersonalCarUsage;
 
 	public Double getNextRemoval() {

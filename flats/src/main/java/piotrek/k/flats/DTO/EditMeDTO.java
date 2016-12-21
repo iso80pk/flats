@@ -6,14 +6,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class EditMeDTO {
 
-	@NotEmpty
-	@Size(min = 1, max = 40)
+	@NotEmpty(message="Pole jest wymagane")
+	@Size(min = 1, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
 	private String firstName;
 
-	@Size(max = 40)
+	@Size(max = 40, message="Pole mo¿e zawieraæ do 40 znaków")
 	private String lastName;
 
-	@Size(max = 15)
+	@Size(max = 13, message="Pole mo¿e zawieraæ do 13 znaków")
 	private String phoneNumber;
 
 	public String getFirstName() {

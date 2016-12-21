@@ -18,6 +18,8 @@
 					<div class="col-sm-6">
 						<form:input type="password" path="oldPassword" name="oldPassword"
 							class="form-control" placeholder="Tutaj wpisz obecne hasło" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="oldPassword" class="my-form-error" /></c:if>
 					</div>
 				</div>
 
@@ -26,6 +28,8 @@
 					<div class="col-sm-6">
 						<form:input type="password" path="newPassword" name="newPassword"
 							class="form-control" placeholder="Podaj nowe hasło" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="newPassword" class="my-form-error" /></c:if>
 					</div>
 				</div>
 
@@ -35,6 +39,8 @@
 						<form:input type="password" path="repetedNewPassword"
 							name="repetedNewPassword" class="form-control"
 							placeholder="Powtórz nowe hasło" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="repetedNewPassword" class="my-form-error" /></c:if>
 					</div>
 				</div>
 

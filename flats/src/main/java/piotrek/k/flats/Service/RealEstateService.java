@@ -11,24 +11,28 @@ import piotrek.k.flats.Model.User;
 
 @Service
 public class RealEstateService {
-	
+
 	@Autowired
 	private IRealEstate iRealEstate;
-	
-	public RealEstate findById (Long id){
+
+	public RealEstate findById(Long id) {
 		return iRealEstate.findById(id);
 	}
-	
-	public List<RealEstate> findByUser (User user){
+
+	public List<RealEstate> findByUser(User user) {
 		return iRealEstate.findByUser(user);
 	}
-	
-	public void addRealEstate(RealEstate realEstate){
+
+	public void addRealEstate(RealEstate realEstate) {
 		iRealEstate.save(realEstate);
 	}
-	
-	public void deleteRealEstate(Long id){
+
+	public void deleteRealEstate(Long id) {
 		iRealEstate.delete(id);
+	}
+
+	public boolean itIsMyRealEstate(User user, RealEstate realEstate) {
+		return realEstate.getUser().getId().equals(user.getId());
 	}
 
 }

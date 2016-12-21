@@ -9,7 +9,9 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
-
+		
+			<div class="row">
+			<div class="table-responsive col-md-8 col-md-offset-2">
 			<table class="table table-striped">
 				<thead>
 					<tr>
@@ -63,6 +65,8 @@
 					</tr>
 				</tfoot>
 			</table>
+			
+			</div></div>
 
 
 			<br /> <a href="../">Strona główna</a><br />

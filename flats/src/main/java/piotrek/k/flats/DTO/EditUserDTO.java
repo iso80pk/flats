@@ -7,25 +7,25 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 public class EditUserDTO {
 
-	@NotEmpty
-	@Size(min = 1, max = 40)
+	@NotEmpty(message="Pole jest wymagane")
+	@Size(min = 1, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
 	private String firstName;
 
-	@Size(max = 40)
+	@Size(min = 1, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
 	private String lastName;
 
-	@NotEmpty
-	@Size(min = 4, max = 35)
+	@NotEmpty(message="Pole jest wymagane")
+	@Size(min = 4, max = 35, message="Pole mo¿e zawieraæ od 4 do 35 znaków")
 	private String username;
 
 	private boolean enabled;
 
-	@NotEmpty
-	@Email
-	@Size(min = 3, max = 60)
+	@NotEmpty(message="Pole jest wymagane")
+	@Email(message="Pole piwinno zawieraæ prawid³owy adres e-mail")
+	@Size(min = 3, max = 60, message="Pole mo¿e zawieraæ od 3 do 60 znaków")
 	private String email;
 
-	@Size(max = 15)
+	@Size(max = 13, message="Pole mo¿e zawieraæ do 13 znaków")
 	private String phoneNumber;
 
 	public String getFirstName() {

@@ -9,9 +9,11 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
-			<p style="width: 100%; text-align: center;">Wszystkie statystyki</p>
+			<p style="width: 100%; text-align: center;">Użytkownik: ${user.username}</p>
+			
+			<div class="row">
+			<div class="table-responsive col-md-8 col-md-offset-2">
 			<table class="table table-striped">
-
 				<tbody>
 
 					<tr>
@@ -59,19 +61,19 @@
 						</c:if>
 						<c:if test="${isAdmin != null}">
 							<td>Admin</td>
-							<td>${isAdmin.role}<a
-								href="deleteRole-${isAdmin.id}-${user.id}">X</a></td>
+							<td>${isAdmin.role} <a
+								href="deleteRole-${isAdmin.id}-${user.id}"> X</a></td>
 						</c:if>
 					</tr>
 					<tr>
 						<c:if test="${isUser == null}">
 							<td>User</td>
-							<td><a href=addRole-${user.id}-ROLE_USER>Dodaj</a></td>
+							<td><a href=addRole-${user.id}-ROLE_USER>Dodaj </a></td>
 						</c:if>
 						<c:if test="${isUser != null}">
 							<td>User</td>
-							<td>${isUser.role}<a
-								href="deleteRole-${isUser.id}-${user.id}">X</a></td>
+							<td>${isUser.role} <a
+								href="deleteRole-${isUser.id}-${user.id}"> X</a></td>
 						</c:if>
 					</tr>
 					<tr>
@@ -81,6 +83,9 @@
 
 				</tbody>
 			</table>
+			</div>
+			
+			</div>
 
 			<br /> 
 			<a href="../users/">Wstecz</a><br /> <br />

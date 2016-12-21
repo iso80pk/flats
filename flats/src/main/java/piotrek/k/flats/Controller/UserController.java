@@ -19,7 +19,7 @@ import piotrek.k.flats.Service.UserService;
 
 @Controller
 @RequestMapping(value = "/aboutMe")
-@Secured({ "ROLE_USER","ROLE_ADMIN" })
+@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 public class UserController {
 
 	@Autowired
@@ -50,9 +50,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String editUserPOST(@ModelAttribute("form") @Valid EditMeDTO form, BindingResult result) {
+	public String editUserPOST(@ModelAttribute("form") @Valid EditMeDTO form, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-
 			return "user/editMe";
 		} else {
 			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -72,9 +71,8 @@ public class UserController {
 	@RequestMapping(value = "/password", method = RequestMethod.POST)
 	public String passwordPOST(@ModelAttribute("passwordForm") @Valid PasswordDTO passwordForm, BindingResult result) {
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		if (result.hasErrors()||
-				!userService.checkPasword(passwordForm.getOldPassword(), user.getPassword())||
-				!passwordForm.getNewPassword().equals(passwordForm.getRepetedNewPassword())) {
+		if (result.hasErrors() || !userService.checkPasword(passwordForm.getOldPassword(), user.getPassword())
+				|| !passwordForm.getNewPassword().equals(passwordForm.getRepetedNewPassword())) {
 			return "user/changeMyPassword";
 		} else {
 			user.setPassword(userService.makePasword(passwordForm.getNewPassword()));

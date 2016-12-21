@@ -9,7 +9,8 @@
 		<div class="container">
 
 			<p style="width: 100%; text-align: center;">Wszystkie statystyki</p>
-			<div class="table-responsive">
+			<div class="row">
+			<div class="table-responsive col-md-8 col-md-offset-2">
 				<table class="table table-striped">
 
 					<tbody>
@@ -118,16 +119,16 @@
 
 					</tbody>
 				</table>
-			</div>
+			</div></div>
 
 			<br />
-			<center>
+			
 				<a href="../realEstate/">Wstecz</a><br />
-			</center>
+			
 			<br />
-			<center>
+			
 				<a href="../">Strona główna</a><br />
-			</center>
+			
 
 
 		</div>

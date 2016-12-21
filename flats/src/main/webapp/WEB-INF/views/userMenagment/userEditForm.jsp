@@ -19,6 +19,8 @@
 					<div class="col-sm-6">
 						<form:input type="text" path="firstName" name="firstName"
 							class="form-control" placeholder="Imię" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="firstName" class="my-form-error" /></c:if>
 					</div>
 				</div>
 
@@ -27,6 +29,8 @@
 					<div class="col-sm-6">
 						<form:input type="text" path="lastName" name="lastName"
 							class="form-control" placeholder="Nazwisko" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="lastName" class="my-form-error" /></c:if>
 					</div>
 				</div>
 				
@@ -35,6 +39,8 @@
 					<div class="col-sm-6">
 						<form:input type="text" path="username" name="username"
 							class="form-control" placeholder="Nazwa użytkownika" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="username" class="my-form-error" /></c:if>
 					</div>
 				</div>
 				
@@ -48,16 +54,20 @@
 				<div class="form-group">
 					<label class="control-label col-sm-4">E-mail:</label>
 					<div class="col-sm-6">
-						<form:input type="text" path="email" name="email"
+						<form:input type="email" path="email" name="email"
 						class="form-control" placeholder="E-mail" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="email" class="my-form-error" /></c:if>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-4">Telefon:</label>
 					<div class="col-sm-6">
-						<form:input type="text" path="phoneNumber" name="phoneNumber"
+						<form:input type="text" path="phoneNumber" name="phoneNumber" maxlength="13" pattern="((00|\+)(\d\d))?\d{9}"
 						class="form-control" placeholder="Telefon" />
+						<c:if test="${pageContext.request.method=='POST'}">
+						<form:errors path="phoneNumber" class="my-form-error" /></c:if>
 					</div>
 				</div>
 

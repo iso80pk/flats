@@ -17,7 +17,8 @@
 			<p style="text-align: center">
 				<a href="add">dodaj nową nieruchomość</a>
 			</p>
-			<div class="table-responsive">
+			<div class="row">
+			<div class="table-responsive col-md-8 col-md-offset-2">
 				<table class="table table-striped">
 					<thead>
 						<tr>
@@ -50,6 +51,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
+			</div>
 			</div>
 
 			<br /> <a href="../">Strona główna</a><br />

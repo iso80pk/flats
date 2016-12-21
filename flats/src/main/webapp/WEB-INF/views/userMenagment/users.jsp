@@ -10,7 +10,8 @@
 	<div class="col-xs-12">
 		<div class="container">
 			<p style="width: 100%; text-align: center;">Użutkownicy</p>
-			<div class="table-responsive">
+			<div class="row">
+			<div class="table-responsive col-md-8 col-md-offset-2">
 				<table class="table table-striped ">
 					<thead>
 						<tr>
@@ -45,7 +46,7 @@
 						</c:forEach>
 					</tbody>
 				</table>
-			</div>
+			</div></div>
 
 			<br /> <a href="../">Strona główna</a><br />
 

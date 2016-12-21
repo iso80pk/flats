@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,7 @@ import piotrek.k.flats.Service.UserService;
 
 @RequestMapping(value = "/realEstate")
 @Controller
+@Secured({ "ROLE_USER", "ROLE_ADMIN" })
 public class RealEstateController {
 
 	@Autowired
@@ -95,59 +97,94 @@ public class RealEstateController {
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editRealEstateGET(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("form", realEstateService.findById(id));
-		Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
-		realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
-		realEstateTypes.put("DOM", "DOM");
-		model.addAttribute("realEstateTypes", realEstateTypes);
-		return "realEstate/realEstateForm";
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		RealEstate realEstate = realEstateService.findById(id);
+		if (realEstate == null)
+			return "redirect:/404";
+		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+			return "redirect:/403";
+		else {
+			model.addAttribute("form", realEstate);
+			Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
+			realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
+			realEstateTypes.put("DOM", "DOM");
+			model.addAttribute("realEstateTypes", realEstateTypes);
+			return "realEstate/realEstateForm";
+
+		}
+
 	}
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.POST)
 	public String editRealEstatePOST(@PathVariable("id") Long id, @ModelAttribute("form") @Valid RealEstateDTO form,
 			BindingResult result) {
-		if (result.hasErrors()) {
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		RealEstate realEstate = realEstateService.findById(id);
+		if (realEstate == null)
+			return "redirect:/404";
+		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+			return "redirect:/403";
+		else {
+			if (result.hasErrors()) {
 
-			return "realEstate/realEstateForm";
-		} else {
-			RealEstate realEstate = realEstateService.findById(id);
-			realEstate.setLocation(form.getLocation());
-			realEstate.setRealEstateType(form.getRealEstateType());
-			realEstate.setFloorArea(form.getFloorArea());
-			realEstate.setPrice(form.getPrice());
-			realEstate.setNumberOfRooms(form.getNumberOfRooms());
-			realEstate.setHowOld(form.getHowOld());
-			realEstate.setGarage(form.getGarage());
-			realEstate.setParking(form.getParking());
-			realEstate.setGarden(form.getGarden());
-			realEstate.setCellar(form.getCellar());
-			realEstate.setFloor(form.getFloor());
-			realEstate.setMonitoring(form.getMonitoring());
-			realEstate.setLift(form.getLift());
-			realEstate.setOwnContribution(form.getOwnContribution());
-			realEstate.setKmPerDay(form.getKmPerDay());
-			realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
-			realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
-			realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
-			realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
-			realEstate.setNotes(form.getNotes());
+				return "realEstate/realEstateForm";
+			} else {
 
-			realEstateService.addRealEstate(realEstate);
-			return "redirect:../realEstate/details-{id}";
+				realEstate.setLocation(form.getLocation());
+				realEstate.setRealEstateType(form.getRealEstateType());
+				realEstate.setFloorArea(form.getFloorArea());
+				realEstate.setPrice(form.getPrice());
+				realEstate.setNumberOfRooms(form.getNumberOfRooms());
+				realEstate.setHowOld(form.getHowOld());
+				realEstate.setGarage(form.getGarage());
+				realEstate.setParking(form.getParking());
+				realEstate.setGarden(form.getGarden());
+				realEstate.setCellar(form.getCellar());
+				realEstate.setFloor(form.getFloor());
+				realEstate.setMonitoring(form.getMonitoring());
+				realEstate.setLift(form.getLift());
+				realEstate.setOwnContribution(form.getOwnContribution());
+				realEstate.setKmPerDay(form.getKmPerDay());
+				realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
+				realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
+				realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
+				realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
+				realEstate.setNotes(form.getNotes());
+
+				realEstateService.addRealEstate(realEstate);
+				return "redirect:../realEstate/details-{id}";
+			}
 
 		}
 	}
 
 	@RequestMapping(value = "/details-{id}")
 	public String realEstateDetails(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("realEstate", realEstateService.findById(id));
-		return "realEstate/realEstateDetail";
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		RealEstate realEstate = realEstateService.findById(id);
+		if (realEstate == null)
+			return "redirect:/404";
+		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+			return "redirect:/403";
+		else {
+
+			model.addAttribute("realEstate", realEstate);
+			return "realEstate/realEstateDetail";
+		}
 	}
 
 	@RequestMapping(value = "/delete-{id}")
 	public String deleteUserById(@PathVariable("id") Long id) {
-		realEstateService.deleteRealEstate(id);
-		return "redirect:../realEstate/";
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		RealEstate realEstate = realEstateService.findById(id);
+		if (realEstate == null)
+			return "redirect:/404";
+		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+			return "redirect:/403";
+		else {
+			realEstateService.deleteRealEstate(id);
+			return "redirect:../realEstate/";
+		}
 	}
 
 }

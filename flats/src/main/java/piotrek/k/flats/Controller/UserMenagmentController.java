@@ -25,7 +25,7 @@ public class UserMenagmentController {
 
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RolesService rolesService;
 
@@ -48,49 +48,65 @@ public class UserMenagmentController {
 
 	@RequestMapping(value = "/details-{id}")
 	public String userDetails(@PathVariable("id") Long id, Model model) {
-		User user=userService.getUserById(id);
-		model.addAttribute("user", user);
-		model.addAttribute("isAdmin",userService.isAdmin(user));
-		model.addAttribute("isUser", userService.isUser(user));
-		return "userMenagment/userDetails";
+		User user = userService.getUserById(id);
+		if (user == null)
+			return "redirect:/404";
+		else {
+
+			model.addAttribute("user", user);
+			model.addAttribute("isAdmin", userService.isAdmin(user));
+			model.addAttribute("isUser", userService.isUser(user));
+			return "userMenagment/userDetails";
+		}
+
 	}
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editUser(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("form", userService.getUserById(id));
-		return "userMenagment/userEditForm";
+		User user = userService.getUserById(id);
+		if (user == null)
+			return "redirect:/404";
+		else {
+			model.addAttribute("form", user);
+			return "userMenagment/userEditForm";
+		}
 	}
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.POST)
-	public String editUserPOST(@PathVariable("id") Long id,@ModelAttribute("form") @Valid EditUserDTO form, BindingResult result) {
-		if (result.hasErrors()) {
-			
-			return "userMenagment/userEditForm";
-		} else {
-			User user = userService.getUserById(id);
-			user.setFirstName(form.getFirstName());
-			user.setLastName(form.getLastName());
-			user.setUsername(form.getUsername());
-			user.setEmail(form.getEmail());
-			user.setEnabled(form.isEnabled());
-			user.setPhoneNumber(form.getPhoneNumber());
-			userService.addUser(user);
-			return "redirect:/users/details-" + id;
+	public String editUserPOST(@PathVariable("id") Long id, @ModelAttribute("form") @Valid EditUserDTO form,
+			BindingResult result) {
+		User user = userService.getUserById(id);
+		if (user == null)
+			return "redirect:/404";
+		else {
+			if (result.hasErrors()) {
+
+				return "userMenagment/userEditForm";
+			} else {
+				user.setFirstName(form.getFirstName());
+				user.setLastName(form.getLastName());
+				user.setUsername(form.getUsername());
+				user.setEmail(form.getEmail());
+				user.setEnabled(form.isEnabled());
+				user.setPhoneNumber(form.getPhoneNumber());
+				userService.addUser(user);
+				return "redirect:/users/details-" + id;
+			}
 		}
 	}
-	
+
 	@RequestMapping(value = "/deleteRole-{id}-{userID}")
-	public String deleteRole(@PathVariable("id") Long id, @PathVariable("userID") Long idUser){
+	public String deleteRole(@PathVariable("id") Long id, @PathVariable("userID") Long idUser) {
 		rolesService.deleteRole(id);
-		return "redirect:/users/details-" +idUser;
+		return "redirect:/users/details-" + idUser;
 	}
-	
+
 	@RequestMapping(value = "/addRole-{userId}-{role}")
-	public String addRole(@PathVariable("userId") Long id, @PathVariable("role") String role){
-		Roles roles=new Roles();
+	public String addRole(@PathVariable("userId") Long id, @PathVariable("role") String role) {
+		Roles roles = new Roles();
 		roles.setRole(role);
 		roles.setUser(userService.getUserById(id));
 		rolesService.saveRole(roles);
-		return "redirect:/users/details-" +id;
+		return "redirect:/users/details-" + id;
 	}
 }

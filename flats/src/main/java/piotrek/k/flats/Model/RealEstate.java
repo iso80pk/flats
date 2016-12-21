@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
+
+
 @Entity
 @Table(name = "realEstate")
 public class RealEstate {
@@ -38,6 +41,7 @@ public class RealEstate {
 	private Boolean accessToPublicTransport;
 	private Double averagePriceInArea;
 	private String advertismentsLink;
+	@Type(type="text")
 	private String notes;
 
 	private Date supplementDate;

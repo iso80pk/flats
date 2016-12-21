@@ -9,35 +9,35 @@ import javax.validation.constraints.Size;
 
 public class RealEstateDTO {
 
-	@NotNull
-	@Size(min = 3, max = 50)
+	@NotNull(message="Pole jest wymagane")
+	@Size(min = 3, max = 50, message="Pole mo¿e zawieraæ od 3 do 50 znaków")
 	private String location;
 
-	@NotNull
-	@Size(min = 3, max = 35)
+	@NotNull(message="Pole jest wymagane")
+	@Size(min = 3, max = 35, message="Pole mo¿e zawieraæ od 3 do 35 znaków")
 	private String realEstateType;
 
-	@NotNull
-	@DecimalMin("3.0")
+	@NotNull(message="Pole jest wymagane")
+	@DecimalMin(value = "3.0", message = "Minimalna wartoœæ to 3")
 	private Double floorArea;
 
-	@NotNull
-	@DecimalMin("10.0")
-	@DecimalMax("99999999.99")
+	@NotNull(message="Pole jest wymagane")
+	@DecimalMin(value = "100.0", message = "Minimalna wartoœæ to 100")
+	@DecimalMax(value = "99999999.99", message = "Maksymalna wartoœæ to 99999999.99")
 	private Double price;
 
-	@NotNull
-	@Min(0)
-	@Max(50)
+	@NotNull(message="Pole jest wymagane")
+	@Min(value = 1, message = "Wartoœæ powinna byæ wiêksza od 0")
+	@Max(value = 100, message = "Wartoœæ powinna wynosiæ co najwy¿ej 100")
 	private Integer numberOfRooms;
 
-	@Min(0)
-	@Max(500)
-	@NotNull
+	@Min(value = 0, message = "Wartoœæ nie mo¿e byæ ujemna")
+	@Max(value = 500, message = "Wartoœæ powinna wynosiæ co najwy¿ej 500")
+	@NotNull(message="Pole jest wymagane")
 	private Integer howOld;
 	
-	@Min(0)
-	@Max(50)
+	@Min(value = 0, message = "Wartoœæ nie mo¿e byæ ujemna")
+	@Max(value = 100, message = "Wartoœæ powinna wynosiæ co najwy¿ej 100")
 	private Integer floor;
 
 	private Boolean garage;
@@ -48,21 +48,26 @@ public class RealEstateDTO {
 	private Boolean lift;
 	private Boolean accessToPublicTransport;
 
-	@DecimalMin("0.0")
-	@DecimalMax("99999999.99")
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "99999999.99", message = "Maksymalna wartoœæ to 99999999.99")
 	private Double ownContribution;
-	@DecimalMin("0.0")
-	@DecimalMax("9999.99")
+	
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "9999.99", message = "Maksymalna wartoœæ to 9999.99")
 	private Double kmPerDay;
-	@DecimalMin("0.0")
-	@DecimalMax("99999.99")
+
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "99999.99", message = "Maksymalna wartoœæ to 99999.99")
 	private Double maintenanceCosts;
 
-	@DecimalMin("100.0")
-	@DecimalMax("999999.99")
+	@DecimalMin(value = "100.0", message = "Minimalna wartoœæ to 100")
+	@DecimalMax(value = "999999.99", message = "Maksymalna wartoœæ to 999999.99")
 	private Double averagePriceInArea;
+	
 	private String advertismentsLink;
+	
 	private String notes;
+	
 	public String getLocation() {
 		return location;
 	}

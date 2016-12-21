@@ -3,6 +3,7 @@ package piotrek.k.flats.Model;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -51,19 +52,19 @@ public class User {
 	private Date signUpDate;
 
 	@LazyCollection(LazyCollectionOption.FALSE) // ?
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
 	private List<Statistics> statistics;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
 	private List<Roles> roles;
 
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
 	private List<RealEstate> realEstates;
 
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToOne(mappedBy = "user")
+	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
 	private UserSituation userSituation;
 
 	public Long getId() {
