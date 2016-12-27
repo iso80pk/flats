@@ -11,7 +11,7 @@ public class UserDTO {
 	@Size(min = 1, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
 	private String firstName;
 
-	@Size(min = 1, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
+	@Size(min = 0, max = 40, message="Pole mo¿e zawieraæ od 1 do 40 znaków")
 	private String lastName;
 
 	@NotEmpty(message="Pole jest wymagane")

@@ -66,6 +66,13 @@ public class User {
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
 	private UserSituation userSituation;
+	
+	
+	
+	
+	@LazyCollection(LazyCollectionOption.TRUE)
+	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
+	private UserExpectations userExpectations;
 
 	public Long getId() {
 		return id;

@@ -9,48 +9,59 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
-			<p style="width: 100%; text-align: center;">Użutkownicy</p>
+
+			<div class="row col-sm-offset-2">
+				<a href="/">Strona główna</a> > <a href="/users/"> Użytkowinicy</a>
+			</div>
+
 			<div class="row">
-			<div class="table-responsive col-md-8 col-md-offset-2">
-				<table class="table table-striped ">
-					<thead>
-						<tr>
+				<div class="text-center">
+					<h2>Użytkowinicy</h2>
+				</div>
+			</div>
 
-							<td>ID</td>
-							<td>Imię</td>
-							<td>Nazwisko</td>
-							<td>Nazwa użytkownika</td>
-							<td>Aktywny</td>
-							<td>Data rejestracji</td>
-							<td>Szczegóły</td>
-							<td>Edytuj</td>
-							<td>Usuń</td>
 
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="user" items="${users}">
+
+
+			<div class="row">
+				<div class="table-responsive col-md-8 col-md-offset-2">
+					<table class="table table-striped ">
+						<thead>
 							<tr>
-								<td>${user.id}</td>
-								<td>${user.firstName}</td>
-								<td>${user.lastName}</td>
-								<td>${user.username}</td>
-								<td><c:if test="${user.enabled == true}">Tak</c:if> <c:if
-										test="${user.enabled == false}">Nie</c:if></td>
-								<td><fmt:formatDate pattern="dd.MM.yyyy"
-										value="${user.signUpDate}" />r.</td>
-								<td><a href="details-${user.id}">Szczegóły</a></td>
-								<td><a href="edit-${user.id}">Edytuj</a></td>
-								<td><a href="delete-${user.id}">Usuń</a></td>
+
+								
+								<th>Imię</th>
+								<th>Nazwisko</th>
+								<th>Nazwa</th>
+								<th>Aktywny</th>
+								<th>Data rejestracji</th>
+								<th colspan="3" class="my-center">Akcja</th>
+
 							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div></div>
+						</thead>
+						<tbody>
+							<c:forEach var="user" items="${users}">
+								<tr>
+									
+									<td>${user.firstName}</td>
+									<td>${user.lastName}</td>
+									<td>${user.username}</td>
+									<td><c:if test="${user.enabled == true}">Tak</c:if> <c:if
+											test="${user.enabled == false}">Nie</c:if></td>
+									<td><fmt:formatDate pattern="dd.MM.yyyy"
+											value="${user.signUpDate}" />r.</td>
+											
+									<td><a class="btn btn-info" href="details-${user.id}" role="button">Szczegóły</a></td>
+									<td><a class="btn btn-primary"	href="edit-${user.id}" role="button">Edytuj</a></td>
+									<td><a class="btn btn-danger " href="delete-${user.id}" role="button">Usuń</a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 
-			<br /> <a href="../">Strona główna</a><br />
-
-
+			
 		</div>
 	</div>
 </div>

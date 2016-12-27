@@ -19,3 +19,8 @@ html, body{
 	color:red;
 	font-weight:bold
 }
+
+.my-center{
+	text-align: center;
+	vertical-align:middle
+}

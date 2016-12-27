@@ -9,7 +9,16 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
+			<div class="row col-sm-offset-2">
+				<a href="/">Strona główna</a> > <a href="/realEstate/">
+					Nieruchomości do porównania</a>
+			</div>
 
+			<div class="row">
+				<div class="text-center">
+					<h2>Nieruchomość</h2>
+				</div>
+			</div>
 
 			<form:form method="POST" class="form-horizontal"
 				modelAttribute="form">
@@ -276,10 +285,7 @@
 
 			</form:form>
 
-			<br /> <a href="../realEstate/">Moje nieruchomości</a><br /> <br />
-			<a href="../">Strona główna</a><br />
-
-
+			
 		</div>
 	</div>
 </div>

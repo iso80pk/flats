@@ -1,8 +1,7 @@
-<div class="row">
-		<div class="col-xs-12">
-			<div class="footer"> Stopka</div>
-		</div>
-	</div>
+<footer  class="footer">
+	<div>Copyright &copy; Stopka</div>
+
+</footer>
 
 </body>
 </html>

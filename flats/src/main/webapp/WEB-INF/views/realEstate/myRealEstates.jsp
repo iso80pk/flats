@@ -12,52 +12,78 @@
 	<div class="col-xs-12">
 		<div class="container">
 
-			<p style="width: 100%; text-align: center;">Moje nieruchomości</p>
-			<br />
-			<p style="text-align: center">
-				<a href="add">dodaj nową nieruchomość</a>
-			</p>
+			<div class="row col-sm-offset-2">
+				<a href="/">Strona główna</a> > <a href="/realEstate/">
+					Nieruchomości do porównania</a>
+			</div>
+
 			<div class="row">
-			<div class="table-responsive col-md-8 col-md-offset-2">
-				<table class="table table-striped">
-					<thead>
-						<tr>
-
-							<td>Lokalizacja</td>
-							<td>Powierzchnia [m2]</td>
-							<td>Cena</td>
-							<td>Ilość pokoi</td>
-							<td>Link</td>
-							<td>Szczegóły</td>
-							<td>Edytuj</td>
-							<td>Usuń</td>
-
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="realEstate" items="${realEstates}">
-							<tr>
-
-								<td>${realEstate.location}</td>
-								<td>${realEstate.floorArea}</td>
-								<td>${realEstate.price}</td>
-								<td>${realEstate.numberOfRooms}</td>
-								<td><a target="_blank" href="${realEstate.advertismentsLink}">KLIK</a></td>
-
-								<td><a href="details-${realEstate.id}">Szczegóły</a></td>
-								<td><a href="edit-${realEstate.id}">Edytuj</a></td>
-								<td><a href="delete-${realEstate.id}">Usuń</a></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
+				<div class="text-center">
+					<h2>Nieruchomości do porównania</h2>
+				</div>
 			</div>
 
-			<br /> <a href="../">Strona główna</a><br />
+			<c:if test="${empty realEstates}">
+
+				<div class="jumbotron">
+					<h3>Nie masz jeszcze żadnej nieruconości do porównania</h3>
+					<p>Po dodaniu nieruchomosci będzie wyłonić tę najlepszą do
+						zakupu</p>
+					<p>
+						<a class="btn btn-primary btn-lg" href="add" role="button">Dodaj
+							pierwszą nieruchomość</a>
+					</p>
+				</div>
+			</c:if>
+
+			<c:if test="${not empty  realEstates}">
+				<div class=" col-md-offset-2">
+					<a class="btn btn-success" href="add" role="button">Dodaj nową
+						nieruchomość</a>
+				</div>
+
+
+				<div class="row">
+					<div class="table-responsive col-md-8 col-md-offset-2">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th>Lokalizacja</th>
+									<th>Powierzchnia [m2]</th>
+									<th>Cena</th>
+									<th>Ilość pokoi</th>
+									<th>Link</th>
+									<th colspan="3" class="my-center">Akcja</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="realEstate" items="${realEstates}">
+									<tr>
+
+										<td>${realEstate.location}</td>
+										<td>${realEstate.floorArea}</td>
+										<td>${realEstate.price}</td>
+										<td>${realEstate.numberOfRooms}</td>
+										<td><a target="_blank"
+											href="${realEstate.advertismentsLink}"> <span
+												class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+										</a></td>
+
+										<td><a class="btn btn-info" href="details-${realEstate.id}" role="button">Szczegóły</a></td>
+										<td><a class="btn btn-primary"	href="edit-${realEstate.id}" role="button">Edytuj</a></td>
+										<td><a class="btn btn-danger " href="delete-${realEstate.id}" role="button">Usuń</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
 
 
 
+
+			</c:if>
 
 		</div>
 	</div>

@@ -8,7 +8,15 @@
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
-			<p style="width: 100%; text-align: center;">Edytuj</p>
+			<div class="row col-sm-offset-2">
+				<a href="/">Strona główna</a> > <a href="/aboutMe/">Profil</a>
+			</div>
+
+			<div class="row">
+				<div class="text-center">
+					<h2>Edutuj dane</h2>
+				</div>
+			</div>
 			
 			
 			<form:form method="POST" modelAttribute="form" class="form-horizontal">

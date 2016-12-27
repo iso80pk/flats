@@ -2,6 +2,7 @@ package piotrek.k.flats.Model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 
@@ -20,11 +22,22 @@ public class RealEstate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	
+	@NotNull
+	@Column(length = 50)
 	private String location;
+	
+	@NotNull
+	@Column(length = 35)
 	private String realEstateType;
+	
+	@NotNull
 	private Double floorArea;
+	
+	@NotNull
 	private Double price;
+	
+	@NotNull
 	private Integer numberOfRooms;
 	private Integer howOld;
 

@@ -20,69 +20,68 @@
 <script src="/webjars/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="row">
-		<div class="col-xs-12">
-			<nav class="navbar navbar-inverse">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target="#myNavbar">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
-						</button>
-						<a class="navbar-brand" href="../">Nieruchomości</a>
-					</div>
-					<div class="collapse navbar-collapse" id="myNavbar">
-						<ul class="nav navbar-nav">
-
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<li class="dropdown"><a class="dropdown-toggle"
-									data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
-									<ul class="dropdown-menu">
-										<li><a href="../users/">Użytkownicy</a></li>
-										<li><a href="#">Page 1-2</a></li>
-										<li><a href="#">Page 1-3</a></li>
-									</ul></li>
-							</sec:authorize>
-
-							<sec:authorize access="hasRole('ROLE_USER')">
-								<li><a href="../realEstate/">Nieruchomości</a></li>
-							</sec:authorize>
-
-							<li><a href="#">O projekcie</a></li>
-
-						</ul>
-						<ul class="nav navbar-nav navbar-right">
-
-							<!-- GUEST -->
-							<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
-								<li><a href="../registration"><span
-										class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
-								<li><a href="../login"><span
-										class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
-							</sec:authorize>
-
-							<!-- USER/ ADMIN -->
-
-							<c:if test="${pageContext.request.userPrincipal.name != null}">
-								<c:url value="/logout" var="logoutUrl" />
-								<form id="logout" action="${logoutUrl}" method="post">
-									<input type="hidden" name="${_csrf.parameterName}"
-										value="${_csrf.token}" />
-								</form>
-								<li><a href="../aboutMe/"><span
-										class="glyphicon glyphicon-user"></span> PROFIL</a></li>
-								<li><a
-									href="javascript:document.getElementById('logout').submit()"><span
-										class="glyphicon glyphicon-off"></span> WYLOGUJ</a></li>
-							</c:if>
 
 
-						</ul>
-					</div>
-				</div>
-			</nav>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../">Nieruchomości</a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Admin<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="../users/">Użytkownicy</a></li>
+							</ul></li>
+					</sec:authorize>
+
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Nieruchomości<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/userExpectations/">Moje oczekiwania</a></li>
+								<li><a href="/realEstate/">Nieruchomości do porównania</a></li>
+							</ul></li>
+					</sec:authorize>
+
+					<li><a href="#">O projekcie</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+
+					<!-- GUEST -->
+					<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+						<li><a href="../registration"><span
+								class="glyphicon glyphicon-user"></span> Zarejestruj się</a></li>
+						<li><a href="../login"><span
+								class="glyphicon glyphicon-log-in"></span> Zaloguj</a></li>
+					</sec:authorize>
+
+					<!-- USER/ ADMIN -->
+
+					<c:if test="${pageContext.request.userPrincipal.name != null}">
+						<c:url value="/logout" var="logoutUrl" />
+						<form id="logout" action="${logoutUrl}" method="post">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+						<li><a href="../aboutMe/"><span
+								class="glyphicon glyphicon-user"></span> PROFIL</a></li>
+						<li><a
+							href="javascript:document.getElementById('logout').submit()"><span
+								class="glyphicon glyphicon-off"></span> WYLOGUJ</a></li>
+					</c:if>
+
+
+				</ul>
+			</div>
 		</div>
-	</div>
-
-	
+	</nav>

@@ -10,17 +10,20 @@
 	<div class="col-xs-12">
 		<div class="container">
 		
+			<div class="row col-sm-offset-2">
+				<a href="/">Strona główna</a> > <a href="/aboutMe/">Profil</a>
+			</div>
+
 			<div class="row">
-			<div class="table-responsive col-md-8 col-md-offset-2">
-			<table class="table table-striped">
-				<thead>
-					<tr>
-						<td colspan="2" style="text-align: center;">O mnie</td>
-
-					</tr>
-				</thead>
-
-				<tbody>
+				<div class="text-center">
+					<h2>O mnie</h2>
+				</div>
+			</div>
+		
+			<div class="row">
+				<div class="table-responsive col-md-8 col-md-offset-2">
+					<table class="table table-striped">
+						<tbody>
 
 					<tr>
 						<td>Imię</td>
@@ -52,27 +55,18 @@
 						<td><fmt:formatDate pattern="dd.MM.yyyy"
 								value="${user.signUpDate}" />r.</td>
 					</tr>
-
-
-
-
-
 				</tbody>
-				<tfoot>
-					<tr>
-						<td><a href="edit"><span class="glyphicon glyphicon-pencil"></span> Edytuj dane</a></td>
-						<td><a href="password"><span class="glyphicon glyphicon-refresh"></span> Zmień hasło</a></td>
-					</tr>
-				</tfoot>
+			
 			</table>
 			
-			</div></div>
+			</div>
+			</div>
 
-
-			<br /> <a href="../">Strona główna</a><br />
-
-
-
+			<div class="row my-center">
+				<a class="btn btn-primary " href="edit" role="button"><span class="glyphicon glyphicon-pencil"></span> Edytuj dane</a>
+				<a class="btn btn-danger " href="password" role="button"><span class="glyphicon glyphicon-refresh"></span> Zmień hasło</a>
+			</div>
+			
 		</div>
 	</div>
 </div>
