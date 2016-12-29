@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <jsp:include page="../main/header.jsp" />
-
-
 <div class="row">
 	<div class="col-xs-12">
 		<div class="container">
@@ -162,5 +161,4 @@
 			$('#submitBtn').click();
 	};
 </script>
-
 <jsp:include page="../main/footer.jsp" />

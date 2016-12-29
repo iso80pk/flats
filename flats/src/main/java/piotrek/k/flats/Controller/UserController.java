@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import piotrek.k.flats.DTO.EditMeDTO;
 import piotrek.k.flats.DTO.PasswordDTO;
+import piotrek.k.flats.DTO.UserSituationDTO;
 import piotrek.k.flats.Model.User;
+import piotrek.k.flats.Model.UserSituation;
 import piotrek.k.flats.Service.UserService;
+import piotrek.k.flats.Service.UserSituationService;
 
 @Controller
 @RequestMapping(value = "/aboutMe")
@@ -24,6 +27,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private UserSituationService userSituationService;
 
 	@ModelAttribute("form")
 	public EditMeDTO getUserForm() {
@@ -33,6 +39,11 @@ public class UserController {
 	@ModelAttribute("passwordForm")
 	public PasswordDTO getPasswordForm() {
 		return new PasswordDTO();
+	}
+	
+	@ModelAttribute("userSituation")
+	public UserSituationDTO getSituationForm() {
+		return new UserSituationDTO();
 	}
 
 	@RequestMapping(value = "/")
@@ -78,6 +89,66 @@ public class UserController {
 			user.setPassword(userService.makePasword(passwordForm.getNewPassword()));
 			userService.addUser(user);
 			return "redirect:/aboutMe/";
+		}
+	}
+	
+	@RequestMapping(value = "/mySituation")
+	public String mySituation(Model model) {
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		model.addAttribute("userSituation", userSituationService.findByUser(user));
+		return "user/userSituation";
+	}
+	
+	@RequestMapping(value = "/addMySituation",  method = RequestMethod.GET)
+	public String addMySituation() {
+		return "user/userSituationForm";
+	}
+	
+	@RequestMapping(value = "/addMySituation", method = RequestMethod.POST)
+	public String addMySituationPOST(@ModelAttribute("userSituation") @Valid UserSituationDTO form, BindingResult result) {
+		if (result.hasErrors())
+			return "user/userSituationForm";
+		else {
+			UserSituation userSituation = new UserSituation();
+			userSituation.setNextRemoval(form.getNextRemoval());
+			userSituation.setCostOfPersonalCarUsage(form.getCostOfPersonalCarUsage());
+			userSituation.setNumberOfFamilyMembers(form.getNumberOfFamilyMembers());
+			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+			userSituation.setUser(user);
+
+			userSituationService.addUserSituation(userSituation);
+			
+			return "redirect:/aboutMe/mySituation";
+		}
+	}
+	
+	@RequestMapping(value = "/editMySituation",  method = RequestMethod.GET)
+	public String editMySituationGET(Model model) {
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		UserSituation userSituation= userSituationService.findByUser(user);
+		if (userSituation ==null) return "redirect:/404";
+		model.addAttribute("userSituation",userSituation);
+		return "user/userSituationForm";
+	}
+	
+	@RequestMapping(value = "/editMySituation", method = RequestMethod.POST)
+	public String editMySituationPOST(@ModelAttribute("userSituation") @Valid UserSituationDTO form, BindingResult result) {
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		UserSituation userSituation= userSituationService.findByUser(user);
+		if (userSituation ==null) return "redirect:/404";
+		
+		if (result.hasErrors())
+			return "user/userSituationForm";
+		else {
+			userSituation.setNextRemoval(form.getNextRemoval());
+			userSituation.setCostOfPersonalCarUsage(form.getCostOfPersonalCarUsage());
+			userSituation.setNumberOfFamilyMembers(form.getNumberOfFamilyMembers());
+			
+			userSituation.setUser(user);
+
+			userSituationService.addUserSituation(userSituation);
+			
+			return "redirect:/aboutMe/mySituation";
 		}
 	}
 

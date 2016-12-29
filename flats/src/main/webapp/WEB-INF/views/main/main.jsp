@@ -8,29 +8,54 @@
 
 
 <div class="row">
-	
-		<div class="container">
+
+	<div class="container">
 
 
-			Wiatj na stronie
-			<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
-				<br />
-				<a href="registration">rejestracja</a>
-			</sec:authorize>
-			<br /> <a href="statistics/">satystyczne ceny mieszkań</a><br />
-
-			<sec:authorize access="hasRole('ROLE_ADMIN')">
-				<br />
-				<a href="users/">Edytuj użytkowników</a>
-			</sec:authorize>
-			<sec:authorize access="hasRole('ROLE_USER')">
-				<br />
-				<a href="realEstate/">Moje nieruchomości</a>
-			</sec:authorize>
-
-
-
+		<div class="row">
+			<div class="text-center">
+				<h2>Witaj na stronie</h2>
+			</div>
 		</div>
+
+
+		<sec:authorize access="hasRole('ROLE_ANONYMOUS')">
+
+			<div class="jumbotron">
+				<div class="row my-center">
+					<h3>Aby korzystać z zawartości konieczna jest rejestracja</h3>
+					<br>
+				</div>
+				<div class="row">
+					<div class=" my-center">
+						<a class="btn btn-primary btn-lg" href="registration"
+							role="button">Przejdź do rejestracji</a>
+					</div>
+					<br>
+					<div>
+						<h3 class=" my-center">Lub zaloguj się</h3>
+						<jsp:include page="loginForm.jsp" />
+					</div>
+				</div>
+
+
+
+
+			</div>
+		</sec:authorize>
+
+		<sec:authorize access="hasRole('ROLE_USER')">
+			<div class="jumbotron">
+				<h3>W przyszłości tu coś się pojawi</h3>
+				<br>
+
+			</div>
+
+		</sec:authorize>
+
+
+
+	</div>
 
 </div>
 

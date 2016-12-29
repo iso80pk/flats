@@ -51,10 +51,6 @@ public class User {
 
 	private Date signUpDate;
 
-	@LazyCollection(LazyCollectionOption.FALSE) // ?
-	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
-	private List<Statistics> statistics;
-
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
 	private List<Roles> roles;
@@ -67,12 +63,15 @@ public class User {
 	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
 	private UserSituation userSituation;
 	
-	
-	
-	
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
 	private UserExpectations userExpectations;
+	
+	@LazyCollection(LazyCollectionOption.TRUE)
+	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
+	private ImportanceOfExpectations importanceOfExpectations;
+	
+	
 
 	public Long getId() {
 		return id;
@@ -144,14 +143,6 @@ public class User {
 
 	public void setSignUpDate(Date signUpDate) {
 		this.signUpDate = signUpDate;
-	}
-
-	public List<Statistics> getStatistics() {
-		return statistics;
-	}
-
-	public void setStatistics(List<Statistics> statistics) {
-		this.statistics = statistics;
 	}
 
 	public List<Roles> getRoles() {

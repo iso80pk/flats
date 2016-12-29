@@ -73,8 +73,14 @@
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 						</form>
-						<li><a href="../aboutMe/"><span
-								class="glyphicon glyphicon-user"></span> PROFIL</a></li>
+						
+								
+						<li class="dropdown"><a class="dropdown-toggle"	data-toggle="dropdown" href="#">
+						<span class="glyphicon glyphicon-user"></span>PROFIL</a>
+							<ul class="dropdown-menu">
+								<li><a href="/aboutMe/">O mnie</a></li>
+								<li><a href="/aboutMe/mySituation">Informacje podstawowe</a></li>
+							</ul></li>
 						<li><a
 							href="javascript:document.getElementById('logout').submit()"><span
 								class="glyphicon glyphicon-off"></span> WYLOGUJ</a></li>

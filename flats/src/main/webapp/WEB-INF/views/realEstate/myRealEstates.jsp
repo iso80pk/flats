@@ -26,8 +26,8 @@
 			<c:if test="${empty realEstates}">
 
 				<div class="jumbotron">
-					<h3>Nie masz jeszcze żadnej nieruconości do porównania</h3>
-					<p>Po dodaniu nieruchomosci będzie wyłonić tę najlepszą do
+					<h3>Nie masz jeszcze żadnej nieruchomości do porównania</h3>
+					<p>Po dodaniu nieruchomości będzie można wyłonić tę najlepszą do
 						zakupu</p>
 					<p>
 						<a class="btn btn-primary btn-lg" href="add" role="button">Dodaj

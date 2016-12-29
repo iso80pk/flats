@@ -9,44 +9,25 @@ import javax.validation.constraints.NotNull;
 public class UserSituationDTO {
 	
 	@NotNull(message="Pole jest wymagane")
-	@DecimalMin(value = "0", message = "Minimalna wartoœæ to 0")
-	@DecimalMax(value = "150.0", message = "Minimalna wartoœæ to 150")
-	private Double nextRemoval;
+	@Min(1)
+	@Max(100)
+	private Integer nextRemoval;
 	
 	@NotNull(message="Pole jest wymagane")
 	@Min(1)
 	@Max(50)
 	private Integer numberOfFamilyMembers;
 	
-	@NotNull(message="Pole jest wymagane")
-	@DecimalMin(value = "10.0", message = "Minimalna wartoœæ to 10")
-	@DecimalMax(value = "99999999.99", message = "Minimalna wartoœæ to 99999999")
-	private Double maxPriceOfRealEstate;
-	
-	@NotNull(message="Pole jest wymagane")
+	@NotNull(message="Pole jest wymagane")			
 	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
-	@DecimalMax(value = "99999999.99", message = "Minimalna wartoœæ to 99999999")
-	private Double maxAdditionalCosts; //? utrzymanie+ remonty+.. na jaki okres?
-	
-	
-	@DecimalMin(value = "3.0", message = "Minimalna wartoœæ to 3")
-	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000.0")
-	private Double minAreaRealEstate;
-	
-
-	@DecimalMin(value = "3.0", message = "Minimalna wartoœæ to 3")
-	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000")
-	private Double maxAreaRealEstate;
-	
-	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
-	@DecimalMax(value = "10000.0", message = "Minimalna wartoœæ to 10000")
+	@DecimalMax(value = "500.0", message = "Minimalna wartoœæ to 500")
 	private Double costOfPersonalCarUsage;
 
-	public Double getNextRemoval() {
+	public Integer getNextRemoval() {
 		return nextRemoval;
 	}
 
-	public void setNextRemoval(Double nextRemoval) {
+	public void setNextRemoval(Integer nextRemoval) {
 		this.nextRemoval = nextRemoval;
 	}
 
@@ -58,38 +39,6 @@ public class UserSituationDTO {
 		this.numberOfFamilyMembers = numberOfFamilyMembers;
 	}
 
-	public Double getMaxPriceOfRealEstate() {
-		return maxPriceOfRealEstate;
-	}
-
-	public void setMaxPriceOfRealEstate(Double maxPriceOfRealEstate) {
-		this.maxPriceOfRealEstate = maxPriceOfRealEstate;
-	}
-
-	public Double getMaxAdditionalCosts() {
-		return maxAdditionalCosts;
-	}
-
-	public void setMaxAdditionalCosts(Double maxAdditionalCosts) {
-		this.maxAdditionalCosts = maxAdditionalCosts;
-	}
-
-	public Double getMinAreaRealEstate() {
-		return minAreaRealEstate;
-	}
-
-	public void setMinAreaRealEstate(Double minAreaRealEstate) {
-		this.minAreaRealEstate = minAreaRealEstate;
-	}
-
-	public Double getMaxAreaRealEstate() {
-		return maxAreaRealEstate;
-	}
-
-	public void setMaxAreaRealEstate(Double maxAreaRealEstate) {
-		this.maxAreaRealEstate = maxAreaRealEstate;
-	}
-
 	public Double getCostOfPersonalCarUsage() {
 		return costOfPersonalCarUsage;
 	}
@@ -98,4 +47,6 @@ public class UserSituationDTO {
 		this.costOfPersonalCarUsage = costOfPersonalCarUsage;
 	}
 
+	
+	
 }
