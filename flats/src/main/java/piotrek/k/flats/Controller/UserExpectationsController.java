@@ -70,36 +70,7 @@ public class UserExpectationsController {
 		if (result.hasErrors())
 			return "userExpectations/userExpectationsForm";
 		else {
-			UserExpectations userExpectations = new UserExpectations();
-			userExpectations.setLocation(form.getLocation());
-			userExpectations.setRealEstateType(form.getRealEstateType());
-			userExpectations.setMinFloorArea(form.getMinFloorArea());
-			userExpectations.setMaxFloorArea(form.getMaxFloorArea());
-
-			userExpectations.setMinPrice(form.getMinPrice());
-			userExpectations.setMaxPrice(form.getMaxPrice());
-
-			userExpectations.setMinNumberOfRooms(form.getMinNumberOfRooms());
-			userExpectations.setMaxNumberOfRooms(form.getMaxNumberOfRooms());
-
-			userExpectations.setMinHowOld(form.getMinHowOld());
-			userExpectations.setMaxHowOld(form.getMaxHowOld());
-
-			userExpectations.setMinFloor(form.getMinFloor());
-			userExpectations.setMaxFloor(form.getMaxFloor());
-
-			userExpectations.setGarage(form.getGarage());
-			userExpectations.setParking(form.getParking());
-			userExpectations.setGarden(form.getGarden());
-			userExpectations.setCellar(form.getCellar());
-			userExpectations.setMonitoring(form.getMonitoring());
-			userExpectations.setLift(form.getLift());
-			userExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
-
-			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-			userExpectations.setUser(user);
-
-			userExpectationsService.addUserExpectations(userExpectations);
+			userExpectationsService.addUserExpectations(form);
 			
 			return "redirect:/userExpectations/addImportanceOfExpectations";
 		}
@@ -135,32 +106,8 @@ public class UserExpectationsController {
 			if (result.hasErrors()) {
 				return "userExpectations/userExpectationsForm";
 			} else {
-				userExpectations.setLocation(form.getLocation());
-				userExpectations.setRealEstateType(form.getRealEstateType());
-				userExpectations.setMinFloorArea(form.getMinFloorArea());
-				userExpectations.setMaxFloorArea(form.getMaxFloorArea());
-
-				userExpectations.setMinPrice(form.getMinPrice());
-				userExpectations.setMaxPrice(form.getMaxPrice());
-
-				userExpectations.setMinNumberOfRooms(form.getMinNumberOfRooms());
-				userExpectations.setMaxNumberOfRooms(form.getMaxNumberOfRooms());
-
-				userExpectations.setMinHowOld(form.getMinHowOld());
-				userExpectations.setMaxHowOld(form.getMaxHowOld());
-
-				userExpectations.setMinFloor(form.getMinFloor());
-				userExpectations.setMaxFloor(form.getMaxFloor());
-
-				userExpectations.setGarage(form.getGarage());
-				userExpectations.setParking(form.getParking());
-				userExpectations.setGarden(form.getGarden());
-				userExpectations.setCellar(form.getCellar());
-				userExpectations.setMonitoring(form.getMonitoring());
-				userExpectations.setLift(form.getLift());
-				userExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
-
-				userExpectationsService.addUserExpectations(userExpectations);
+		
+				userExpectationsService.updateUserExpectations(userExpectations, form);
 				return "redirect:/userExpectations/";
 			}
 
@@ -182,27 +129,7 @@ public class UserExpectationsController {
 		if (result.hasErrors())
 			return "userExpectations/userImportanceOfExpectationsForm";
 		else {
-			ImportanceOfExpectations importanceOfExpectations = new ImportanceOfExpectations();
-			importanceOfExpectations.setLocation(form.getLocation());
-			importanceOfExpectations.setRealEstateType(form.getRealEstateType());
-			importanceOfExpectations.setFloorArea(form.getFloorArea());
-			importanceOfExpectations.setPrice(form.getPrice());
-			importanceOfExpectations.setNumberOfRooms(form.getNumberOfRooms());
-			importanceOfExpectations.setHowOld(form.getHowOld());
-			importanceOfExpectations.setFloor(form.getFloor());
-			
-			importanceOfExpectations.setGarage(form.getGarage());
-			importanceOfExpectations.setParking(form.getParking());
-			importanceOfExpectations.setGarden(form.getGarden());
-			importanceOfExpectations.setCellar(form.getCellar());
-			importanceOfExpectations.setMonitoring(form.getMonitoring());
-			importanceOfExpectations.setLift(form.getLift());
-			importanceOfExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
-
-			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-			importanceOfExpectations.setUser(user);
-
-			importanceOfExpectationsService.addImportanceOfExpectations(importanceOfExpectations);
+			importanceOfExpectationsService.addImportanceOfExpectations(form);
 			
 			return "redirect:/userExpectations/";
 		}
@@ -235,25 +162,8 @@ public class UserExpectationsController {
 		if (result.hasErrors())
 			return "userExpectations/userImportanceOfExpectationsForm";
 		else {
-			importanceOfExpectations.setLocation(form.getLocation());
-			importanceOfExpectations.setRealEstateType(form.getRealEstateType());
-			importanceOfExpectations.setFloorArea(form.getFloorArea());
-			importanceOfExpectations.setPrice(form.getPrice());
-			importanceOfExpectations.setNumberOfRooms(form.getNumberOfRooms());
-			importanceOfExpectations.setHowOld(form.getHowOld());
-			importanceOfExpectations.setFloor(form.getFloor());
 			
-			importanceOfExpectations.setGarage(form.getGarage());
-			importanceOfExpectations.setParking(form.getParking());
-			importanceOfExpectations.setGarden(form.getGarden());
-			importanceOfExpectations.setCellar(form.getCellar());
-			importanceOfExpectations.setMonitoring(form.getMonitoring());
-			importanceOfExpectations.setLift(form.getLift());
-			importanceOfExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
-			
-			importanceOfExpectations.setUser(user);
-
-			importanceOfExpectationsService.addImportanceOfExpectations(importanceOfExpectations);
+			importanceOfExpectationsService.updateImportanceOfExpectations(importanceOfExpectations, form);
 			
 			return "redirect:/userExpectations/";
 			

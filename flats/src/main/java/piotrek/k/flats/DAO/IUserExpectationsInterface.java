@@ -9,8 +9,6 @@ import piotrek.k.flats.Model.UserExpectations;
 @Repository
 public interface IUserExpectationsInterface extends CrudRepository<UserExpectations, Long> {
 
-	public UserExpectations findById(Long id);
-
 	public UserExpectations findByUser(User user);
 
 }

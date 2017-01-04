@@ -5,9 +5,6 @@
 
 <jsp:include page="../main/header.jsp" />
 
-
-<div class="row">
-	<div class="col-xs-12">
 		<div class="container">
 		<div class="row col-sm-offset-2"> <a href="/">Strona główna</a> > <a href="/userExpectations/">Moje oczekiwania</a>
 			
@@ -233,8 +230,7 @@
 			</form:form>
 
 		</div>
-	</div>
-</div>
+
 <script>
 	$(document).ready(function() {
 		$('[data-toggle="tooltip"]').tooltip();

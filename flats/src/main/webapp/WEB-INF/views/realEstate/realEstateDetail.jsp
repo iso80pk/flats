@@ -4,8 +4,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="../main/header.jsp" />
-<div class="row">
-	<div class="col-xs-12">
 		<div class="container">
 
 			<div class="row col-sm-offset-2">
@@ -114,7 +112,7 @@
 							</tr>
 							<tr>
 								<td>Odnośnik do ogłoszenia:</td>
-								<td><a href="${realEstate.advertismentsLink}">KLIK</a></td>
+								<td><a target="_blank" href="${realEstate.advertismentsLink}">KLIK</a></td>
 							</tr>
 							<tr>
 								<td>Notatki</td>
@@ -136,7 +134,5 @@
 
 
 		</div>
-	</div>
-</div>
 
 <jsp:include page="../main/footer.jsp" />

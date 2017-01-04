@@ -36,19 +36,19 @@ public class UserMenagmentController {
 
 	@RequestMapping(value = "/")
 	public String showAllUsers(Model model) {
-		model.addAttribute("users", userService.findAllUsers());
+		model.addAttribute("users", userService.findAll());
 		return "userMenagment/users";
 	}
 
 	@RequestMapping(value = "/delete-{id}")
 	public String deleteUserById(@PathVariable("id") Long id) {
-		userService.deleteUser(id);
+		userService.delete(id);
 		return "redirect:/users/";
 	}
 
 	@RequestMapping(value = "/details-{id}")
 	public String userDetails(@PathVariable("id") Long id, Model model) {
-		User user = userService.getUserById(id);
+		User user = userService.findById(id);
 		if (user == null)
 			return "redirect:/404";
 		else {
@@ -63,7 +63,7 @@ public class UserMenagmentController {
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editUser(@PathVariable("id") Long id, Model model) {
-		User user = userService.getUserById(id);
+		User user = userService.findById(id);
 		if (user == null)
 			return "redirect:/404";
 		else {
@@ -75,7 +75,7 @@ public class UserMenagmentController {
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.POST)
 	public String editUserPOST(@PathVariable("id") Long id, @ModelAttribute("form") @Valid EditUserDTO form,
 			BindingResult result) {
-		User user = userService.getUserById(id);
+		User user = userService.findById(id);
 		if (user == null)
 			return "redirect:/404";
 		else {
@@ -89,7 +89,7 @@ public class UserMenagmentController {
 				user.setEmail(form.getEmail());
 				user.setEnabled(form.isEnabled());
 				user.setPhoneNumber(form.getPhoneNumber());
-				userService.addUser(user);
+				userService.addOrUpdate(user);
 				return "redirect:/users/details-" + id;
 			}
 		}
@@ -97,7 +97,7 @@ public class UserMenagmentController {
 
 	@RequestMapping(value = "/deleteRole-{id}-{userID}")
 	public String deleteRole(@PathVariable("id") Long id, @PathVariable("userID") Long idUser) {
-		rolesService.deleteRole(id);
+		rolesService.delete(id);
 		return "redirect:/users/details-" + idUser;
 	}
 
@@ -105,8 +105,8 @@ public class UserMenagmentController {
 	public String addRole(@PathVariable("userId") Long id, @PathVariable("role") String role) {
 		Roles roles = new Roles();
 		roles.setRole(role);
-		roles.setUser(userService.getUserById(id));
-		rolesService.saveRole(roles);
+		roles.setUser(userService.findById(id));
+		rolesService.addOrUpdate(roles);
 		return "redirect:/users/details-" + id;
 	}
 }

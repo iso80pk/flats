@@ -9,8 +9,6 @@ import piotrek.k.flats.Model.User;
 @Repository
 public interface IImportanceOfExpectationsInterface extends CrudRepository<ImportanceOfExpectations, Long> {
 
-			public ImportanceOfExpectations findById(Long id);
-			public ImportanceOfExpectations findByUser(User user);
+	public ImportanceOfExpectations findByUser(User user);
 
-		}
-
+}

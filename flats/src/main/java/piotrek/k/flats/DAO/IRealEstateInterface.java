@@ -9,9 +9,8 @@ import piotrek.k.flats.Model.RealEstate;
 import piotrek.k.flats.Model.User;
 
 @Repository
-public interface IRealEstate extends CrudRepository<RealEstate, Long> {
+public interface IRealEstateInterface extends CrudRepository<RealEstate, Long> {
 
-	public RealEstate findById(Long id);
 	public List<RealEstate> findByUser(User user);
 
 }

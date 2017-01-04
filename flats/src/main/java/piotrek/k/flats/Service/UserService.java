@@ -1,42 +1,51 @@
 package piotrek.k.flats.Service;
 
-import java.util.List;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import piotrek.k.flats.DAO.IUserInterface;
+import piotrek.k.flats.DTO.UserDTO;
 import piotrek.k.flats.Model.Roles;
 import piotrek.k.flats.Model.User;
 
 @Service
-public class UserService {
+public class UserService extends BaseService<IUserInterface, User> {
+
 	@Autowired
-	IUserInterface iUserInterface;
-
-	public List<User> findAllUsers() {
-		return iUserInterface.findAll();
-	}
-
-	public User getUserById(Long id) {
-		return iUserInterface.findById(id);
-	}
-
-	public void addUser(User user) {
-		iUserInterface.save(user);
-	}
-
-	public void deleteUser(Long id) {
-		iUserInterface.delete(id);
-	}
+	RolesService rolesService;
 
 	public User getByUsername(String username) {
-		return iUserInterface.findByUsername(username);
+		return daoInterface.findByUsername(username);
+	}
+
+	public void registerUser(UserDTO form) {
+
+		User user = new User();
+		user.setFirstName(form.getFirstName());
+		user.setLastName(form.getLastName());
+		user.setUsername(form.getUsername());
+		user.setEmail(form.getEmail());
+		user.setPassword(makePasword((form.getPassword())));
+		user.setEnabled(true);
+		user.setPhoneNumber(form.getPhoneNumber());
+		ZonedDateTime zdt = ZonedDateTime.now();
+		Date date = Date.from(zdt.toInstant());
+		user.setSignUpDate(date);
+		addOrUpdate(user);
+
+		Roles roles = new Roles();
+		roles.setUser(getByUsername(form.getUsername()));
+		roles.setRole("ROLE_USER");
+		rolesService.addOrUpdate(roles);
+
 	}
 
 	public boolean isUserWithEmailOrUsername(String username, String email) {
-		return ((iUserInterface.findByEmail(email) != null) || (iUserInterface.findByUsername(username) != null));
+		return ((daoInterface.findByEmail(email) != null) || (daoInterface.findByUsername(username) != null));
 	}
 
 	public Roles isAdmin(User user) {

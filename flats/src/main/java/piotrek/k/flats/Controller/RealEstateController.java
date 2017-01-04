@@ -1,7 +1,5 @@
 package piotrek.k.flats.Controller;
 
-import java.time.ZonedDateTime;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -61,36 +59,7 @@ public class RealEstateController {
 		if (result.hasErrors())
 			return "realEstate/realEstateForm";
 		else {
-			RealEstate realEstate = new RealEstate();
-			realEstate.setLocation(form.getLocation());
-			realEstate.setRealEstateType(form.getRealEstateType());
-			realEstate.setFloorArea(form.getFloorArea());
-			realEstate.setPrice(form.getPrice());
-			realEstate.setNumberOfRooms(form.getNumberOfRooms());
-			realEstate.setHowOld(form.getHowOld());
-			realEstate.setGarage(form.getGarage());
-			realEstate.setParking(form.getParking());
-			realEstate.setGarden(form.getGarden());
-			realEstate.setCellar(form.getCellar());
-			realEstate.setFloor(form.getFloor());
-			realEstate.setMonitoring(form.getMonitoring());
-			realEstate.setLift(form.getLift());
-			realEstate.setOwnContribution(form.getOwnContribution());
-			realEstate.setKmPerDay(form.getKmPerDay());
-			realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
-			realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
-			realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
-			realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
-			realEstate.setNotes(form.getNotes());
-
-			ZonedDateTime zdt = ZonedDateTime.now();
-			Date date = Date.from(zdt.toInstant());
-			realEstate.setSupplementDate(date);
-
-			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-			realEstate.setUser(user);
-
-			realEstateService.addRealEstate(realEstate);
+			realEstateService.addRealEstate(form);
 			return "redirect:../realEstate/";
 		}
 	}
@@ -129,29 +98,8 @@ public class RealEstateController {
 
 				return "realEstate/realEstateForm";
 			} else {
+				realEstateService.updateRealEstate(realEstate, form);
 
-				realEstate.setLocation(form.getLocation());
-				realEstate.setRealEstateType(form.getRealEstateType());
-				realEstate.setFloorArea(form.getFloorArea());
-				realEstate.setPrice(form.getPrice());
-				realEstate.setNumberOfRooms(form.getNumberOfRooms());
-				realEstate.setHowOld(form.getHowOld());
-				realEstate.setGarage(form.getGarage());
-				realEstate.setParking(form.getParking());
-				realEstate.setGarden(form.getGarden());
-				realEstate.setCellar(form.getCellar());
-				realEstate.setFloor(form.getFloor());
-				realEstate.setMonitoring(form.getMonitoring());
-				realEstate.setLift(form.getLift());
-				realEstate.setOwnContribution(form.getOwnContribution());
-				realEstate.setKmPerDay(form.getKmPerDay());
-				realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
-				realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
-				realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
-				realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
-				realEstate.setNotes(form.getNotes());
-
-				realEstateService.addRealEstate(realEstate);
 				return "redirect:../realEstate/details-{id}";
 			}
 
@@ -182,7 +130,7 @@ public class RealEstateController {
 		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
 			return "redirect:/403";
 		else {
-			realEstateService.deleteRealEstate(id);
+			realEstateService.delete(id);
 			return "redirect:../realEstate/";
 		}
 	}

@@ -7,7 +7,6 @@
 <jsp:include page="header.jsp" />
 
 
-<div class="row">
 
 	<div class="container">
 
@@ -57,6 +56,5 @@
 
 	</div>
 
-</div>
 
 <jsp:include page="footer.jsp" />

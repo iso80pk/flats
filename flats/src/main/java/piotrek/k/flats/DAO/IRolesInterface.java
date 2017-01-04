@@ -9,9 +9,8 @@ import piotrek.k.flats.Model.Roles;
 import piotrek.k.flats.Model.User;
 
 @Repository
-public interface IRolesInterface extends CrudRepository<Roles, Long>{
-	public Roles findById(Long id);
-	public List<Roles> findAll();
+public interface IRolesInterface extends CrudRepository<Roles, Long> {
+
 	public List<Roles> findByUser(User user);
 
 }

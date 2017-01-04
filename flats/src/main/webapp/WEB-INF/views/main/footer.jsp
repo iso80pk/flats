@@ -1,5 +1,6 @@
+</main>
 <footer  class="footer">
-	<div>Copyright &copy; Stopka</div>
+	<div>Copyright &copy; Piotr K.</div>
 
 </footer>
 

@@ -69,7 +69,7 @@ public class UserController {
 			user.setFirstName(form.getFirstName());
 			user.setLastName(form.getLastName());
 			user.setPhoneNumber(form.getPhoneNumber());
-			userService.addUser(user);
+			userService.addOrUpdate(user);
 			return "redirect:/aboutMe/";
 		}
 	}
@@ -87,7 +87,7 @@ public class UserController {
 			return "user/changeMyPassword";
 		} else {
 			user.setPassword(userService.makePasword(passwordForm.getNewPassword()));
-			userService.addUser(user);
+			userService.addOrUpdate(user);
 			return "redirect:/aboutMe/";
 		}
 	}
@@ -116,7 +116,7 @@ public class UserController {
 			User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 			userSituation.setUser(user);
 
-			userSituationService.addUserSituation(userSituation);
+			userSituationService.addOrUpdate(userSituation);
 			
 			return "redirect:/aboutMe/mySituation";
 		}
@@ -146,7 +146,7 @@ public class UserController {
 			
 			userSituation.setUser(user);
 
-			userSituationService.addUserSituation(userSituation);
+			userSituationService.addOrUpdate(userSituation);
 			
 			return "redirect:/aboutMe/mySituation";
 		}

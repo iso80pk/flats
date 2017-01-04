@@ -6,10 +6,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <jsp:include page="../main/header.jsp" />
-
-
-<div class="row">
-	<div class="col-xs-12">
 		<div class="container">
 
 			<div class="row col-sm-offset-2">
@@ -86,7 +82,5 @@
 			</c:if>
 
 		</div>
-	</div>
-</div>
 
 <jsp:include page="../main/footer.jsp" />

@@ -1,10 +1,13 @@
 html, body{
 	background-color: #000000;
 }
+main{
+	margin-bottom: 30px;
+}
 .container{
 	background-color: #dfdfdf;
 	border-radius: 15px;
-	padding: 15px;
+	padding: 15px;	
 }
 
 .footer{
@@ -13,6 +16,10 @@ html, body{
 	padding: 5px;
 	margin-top: 15px;
 	color: #c0c0c0;
+	
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
 .my-form-error{

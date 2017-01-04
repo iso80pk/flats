@@ -9,7 +9,6 @@ import piotrek.k.flats.Model.UserSituation;
 @Repository
 public interface IUserSituationInterface extends CrudRepository<UserSituation, Long> {
 
-	public UserSituation findById(Long id);
 	public UserSituation findByUser(User user);
 
 }
