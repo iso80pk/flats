@@ -44,8 +44,12 @@ public class UserService extends BaseService<IUserInterface, User> {
 
 	}
 
-	public boolean isUserWithEmailOrUsername(String username, String email) {
-		return ((daoInterface.findByEmail(email) != null) || (daoInterface.findByUsername(username) != null));
+	public boolean isUserWithEmail(String email) {
+		return (daoInterface.findByEmail(email) != null);
+	}
+	
+	public boolean isUserWithUsername(String username) {
+		return (daoInterface.findByUsername(username) != null);
 	}
 
 	public Roles isAdmin(User user) {
