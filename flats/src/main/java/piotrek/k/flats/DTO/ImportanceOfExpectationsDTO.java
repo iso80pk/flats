@@ -5,46 +5,46 @@ import javax.validation.constraints.Min;
 
 public class ImportanceOfExpectationsDTO {
 
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer location;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer realEstateType;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer floorArea;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer price;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer numberOfRooms;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer howOld;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer floor;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer garage;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer parking;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer garden;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer cellar;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer monitoring;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer lift;
-	@Min(1)
+	@Min(0)
 	@Max(10)
 	private Integer accessToPublicTransport;
 	public Integer getLocation() {

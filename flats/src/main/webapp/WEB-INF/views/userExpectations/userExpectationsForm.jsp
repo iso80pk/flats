@@ -51,14 +51,14 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-sm-4">Powierzchnia [m2]
+							<label class="control-label col-sm-4">Powierzchnia [m2] *
 							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
 								title="Powierzchnia nieruchomości podawana w m2. Wartość z przedziału 3.00 - 99999999.99"> 
 								<span class="glyphicon glyphicon-info-sign"></span></a>
 							</label>
 							
 							<div class="col-sm-4">
-								<form:input type="number"  min="3" step="0.01" max="99999999.99"
+								<form:input type="number"  min="3" step="0.01" max="99999999.99"  required="required"
 									path="minFloorArea" name="minFloorArea"	
 									class="form-control"	placeholder="Od" />
 							 <c:if test="${pageContext.request.method=='POST'}">
@@ -66,7 +66,7 @@
 							</div>
 							
 							<div class="col-sm-4">
-								<form:input type="number"  min="3" step="0.01" max="99999999.99"
+								<form:input type="number"  min="3" step="0.01" max="99999999.99"  required="required"
 									path="maxFloorArea" name="maxFloorArea"	
 									class="form-control"	placeholder="Do" />
 							 <c:if test="${pageContext.request.method=='POST'}">
@@ -75,20 +75,20 @@
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-sm-4">Cena 
+							<label class="control-label col-sm-4">Cena *
 							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
 								title="Cena całej nieruchomości.  Wartość z przedziału 3.00 - 99999999.99"> 
 								<span class="glyphicon glyphicon-info-sign"></span></a>
 							</label>
 							<div class="col-sm-4">
-								<form:input  type="number"  min="100" step="0.01" max="99999999.99"
+								<form:input  type="number"  min="100" step="0.01" max="99999999.99"  required="required"
 								 path="minPrice" name="minPrice"	
 									class="form-control" placeholder="Od" />
 							 <c:if test="${pageContext.request.method=='POST'}">
 							 <form:errors path="minPrice" class="my-form-error" /></c:if>
 							</div>
 							<div class="col-sm-4">
-								<form:input  type="number"  min="100" step="0.01" max="99999999.99"
+								<form:input  type="number"  min="100" step="0.01" max="99999999.99"  required="required"
 								 path="maxPrice" name="maxPrice"	
 									class="form-control" placeholder="Do" />
 							 <c:if test="${pageContext.request.method=='POST'}">
