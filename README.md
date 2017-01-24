@@ -10,7 +10,7 @@ https://flats-pk.herokuapp.com/
 |    Admin   | admin | admin |
 | Użytkownik | user  | user  |
 
-### [Opis procesu refaktoryzacji](Proces_Refaktoryzacji_kodu.pdf?raw=true "Refaktoryzacja")
+#### [Opis procesu refaktoryzacji](Proces_Refaktoryzacji_kodu.pdf)
 
 
 ### Diagram ERD
