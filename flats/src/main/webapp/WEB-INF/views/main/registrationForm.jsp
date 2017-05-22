@@ -6,6 +6,17 @@
 <jsp:include page="../main/header.jsp" />
 <div class="container">
 	<p style="width: 100%; text-align: center;">Rejestracja</p>
+<<<<<<< HEAD
+=======
+	
+	<c:if test="${pageContext.request.method=='POST'}">
+	<div class="row alert alert-danger col-sm-offset-1 col-sm-10"> 
+		<c:if test="${email == true}">Użytkownik o podanym  <strong>adresie e-mail</strong> już istnieje<br></c:if>
+		<c:if test="${username == true}">Podana <strong>nazwa użytkownika</strong> jest już zajęta</c:if><br>
+		Proszę, popraw błędy.
+	</div>
+	</c:if>
+>>>>>>> 1d467b81d27fa9a513d0442b767aed88bef08e5e
 
 	<form:form method="POST" class="form-horizontal" modelAttribute="form">
 		<div class="row">
@@ -145,7 +156,11 @@
       <div class="modal-body">
       <div id="modal-email"></div>
       <div id="modal-password"></div>
+<<<<<<< HEAD
       <div> Proszę, popraw błędy</div>
+=======
+      <div> Proszę, popraw błędy.</div>
+>>>>>>> 1d467b81d27fa9a513d0442b767aed88bef08e5e
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
