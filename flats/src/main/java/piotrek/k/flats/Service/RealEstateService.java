@@ -2,29 +2,19 @@ package piotrek.k.flats.Service;
 
 import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import piotrek.k.flats.DAO.IRealEstateInterface;
 import piotrek.k.flats.DTO.RealEstateDTO;
 import piotrek.k.flats.Model.RealEstate;
 import piotrek.k.flats.Model.User;
+import piotrek.k.flats.Repository.IRealEstateInterface;
 
 @Service
 public class RealEstateService extends BaseService<IRealEstateInterface, RealEstate> {
 
-	@Autowired
-	private UserService userService;
-
-	public List<RealEstate> findByUser(User user) {
-		return daoInterface.findByUser(user);
-	}
-
 	public boolean itIsMyRealEstate(User user, RealEstate realEstate) {
-		return realEstate.getUser().getId().equals(user.getId());
+		return true;
 	}
 
 	public void addRealEstate(RealEstateDTO form) {
@@ -35,8 +25,9 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		Date date = Date.from(zdt.toInstant());
 		realEstate.setSupplementDate(date);
 
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		realEstate.setUser(user);
+		// User user =
+		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		// realEstate.setUser(user);
 
 		addOrUpdate(realEstate);
 	}

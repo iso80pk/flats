@@ -1,4 +1,4 @@
-package piotrek.k.flats.DAO;
+package piotrek.k.flats.Repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

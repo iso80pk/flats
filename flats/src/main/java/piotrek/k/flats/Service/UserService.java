@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import piotrek.k.flats.DAO.IUserInterface;
 import piotrek.k.flats.DTO.UserDTO;
 import piotrek.k.flats.Model.Roles;
 import piotrek.k.flats.Model.User;
+import piotrek.k.flats.Repository.IUserInterface;
 
 @Service
 public class UserService extends BaseService<IUserInterface, User> {

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import piotrek.k.flats.DAO.IUserExpectationsInterface;
 import piotrek.k.flats.DTO.UserExpectationsDTO;
 import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Model.UserExpectations;
+import piotrek.k.flats.Repository.IUserExpectationsInterface;
 
 @Service
 public class UserExpectationsService extends BaseService<IUserExpectationsInterface, UserExpectations> {

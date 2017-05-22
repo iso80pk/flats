@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import piotrek.k.flats.DAO.IRolesInterface;
 import piotrek.k.flats.Model.Roles;
 import piotrek.k.flats.Model.User;
+import piotrek.k.flats.Repository.IRolesInterface;
 
 @Service
 public class RolesService extends BaseService<IRolesInterface, Roles> {

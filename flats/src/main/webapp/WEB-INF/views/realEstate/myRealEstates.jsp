@@ -66,9 +66,9 @@
 												class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 										</a></td>
 
-										<td><a class="btn btn-info" href="details-${realEstate.id}" role="button">Szczegóły</a></td>
-										<td><a class="btn btn-primary"	href="edit-${realEstate.id}" role="button">Edytuj</a></td>
-										<td><a class="btn btn-danger " href="delete-${realEstate.id}" role="button">Usuń</a></td>
+										<td><a class="btn btn-info" href="details-${realEstate.realEstate_id}" role="button">Szczegóły</a></td>
+										<td><a class="btn btn-primary"	href="edit-${realEstate.realEstate_id}" role="button">Edytuj</a></td>
+										<td><a class="btn btn-danger " href="delete-${realEstate.realEstate_id}" role="button">Usuń</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

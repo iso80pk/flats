@@ -126,9 +126,9 @@
 			</div>
 
 			<div class="row my-center">
-				<a class="btn btn-primary " href="edit-${realEstate.id}"
+				<a class="btn btn-primary " href="edit-${realEstate.realEstate_id}"
 					role="button">Edytuj</a> <a class="btn btn-danger "
-					href="delete-${realEstate.id}" role="button">Usuń</a>
+					href="delete-${realEstate.realEstate_id}" role="button">Usuń</a>
 			</div>
 
 

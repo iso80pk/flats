@@ -1,4 +1,4 @@
-package piotrek.k.flats.DAO;
+package piotrek.k.flats.Repository;
 
 import java.util.List;
 

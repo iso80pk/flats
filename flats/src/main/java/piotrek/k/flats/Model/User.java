@@ -1,5 +1,6 @@
 package piotrek.k.flats.Model;
 
+
 import java.util.Date;
 import java.util.List;
 
@@ -40,6 +41,7 @@ public class User {
 	@Column(length = 60)
 	private String password;
 
+	@Column
 	private boolean enabled;
 
 	@NotNull
@@ -50,14 +52,16 @@ public class User {
 	private String phoneNumber;
 
 	private Date signUpDate;
+	
+	private Date lastLoggedInDate;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
 	private List<Roles> roles;
-
-	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE)
-	private List<RealEstate> realEstates;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
+	private List<RealEstateUser> realEstateUsers;
 
 	@LazyCollection(LazyCollectionOption.TRUE)
 	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
@@ -153,13 +157,13 @@ public class User {
 		this.roles = roles;
 	}
 
-	public List<RealEstate> getRealEstates() {
-		return realEstates;
-	}
-
-	public void setRealEstates(List<RealEstate> realEstates) {
-		this.realEstates = realEstates;
-	}
+//	public List<RealEstate> getRealEstates() {
+//		return realEstates;
+//	}
+//
+//	public void setRealEstates(List<RealEstate> realEstates) {
+//		this.realEstates = realEstates;
+//	}
 
 	public UserSituation getUserSituation() {
 		return userSituation;
@@ -168,5 +172,31 @@ public class User {
 	public void setUserSituation(UserSituation userSituation) {
 		this.userSituation = userSituation;
 	}
+
+	public Date getLastLoggedInDate() {
+		return lastLoggedInDate;
+	}
+
+	public void setLastLoggedInDate(Date lastLoggedInDate) {
+		this.lastLoggedInDate = lastLoggedInDate;
+	}
+
+	public UserExpectations getUserExpectations() {
+		return userExpectations;
+	}
+
+	public void setUserExpectations(UserExpectations userExpectations) {
+		this.userExpectations = userExpectations;
+	}
+
+	public ImportanceOfExpectations getImportanceOfExpectations() {
+		return importanceOfExpectations;
+	}
+
+	public void setImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations) {
+		this.importanceOfExpectations = importanceOfExpectations;
+	}
+	
+	
 
 }

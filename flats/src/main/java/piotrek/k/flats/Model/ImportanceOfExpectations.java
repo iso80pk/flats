@@ -29,6 +29,21 @@ public class ImportanceOfExpectations {
 	private Integer monitoring;
 	private Integer lift;
 	private Integer accessToPublicTransport;
+	
+	private Integer location_priority;
+	private Integer realEstateType_priority;
+	private Integer floorArea_priority;
+	private Integer price_priority;
+	private Integer numberOfRooms_priority;
+	private Integer howOld_priority;
+	private Integer floor_priority;
+	private Integer garage_priority;
+	private Integer parking_priority;
+	private Integer garden_priority;
+	private Integer cellar_priority;
+	private Integer monitoring_priority;
+	private Integer lift_priority;
+	private Integer accessToPublicTransport_priority;
 
 	@OneToOne
 	private User user;
@@ -160,5 +175,119 @@ public class ImportanceOfExpectations {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public Integer getLocation_priority() {
+		return location_priority;
+	}
+
+	public void setLocation_priority(Integer location_priority) {
+		this.location_priority = location_priority;
+	}
+
+	public Integer getRealEstateType_priority() {
+		return realEstateType_priority;
+	}
+
+	public void setRealEstateType_priority(Integer realEstateType_priority) {
+		this.realEstateType_priority = realEstateType_priority;
+	}
+
+	public Integer getFloorArea_priority() {
+		return floorArea_priority;
+	}
+
+	public void setFloorArea_priority(Integer floorArea_priority) {
+		this.floorArea_priority = floorArea_priority;
+	}
+
+	public Integer getPrice_priority() {
+		return price_priority;
+	}
+
+	public void setPrice_priority(Integer price_priority) {
+		this.price_priority = price_priority;
+	}
+
+	public Integer getNumberOfRooms_priority() {
+		return numberOfRooms_priority;
+	}
+
+	public void setNumberOfRooms_priority(Integer numberOfRooms_priority) {
+		this.numberOfRooms_priority = numberOfRooms_priority;
+	}
+
+	public Integer getHowOld_priority() {
+		return howOld_priority;
+	}
+
+	public void setHowOld_priority(Integer howOld_priority) {
+		this.howOld_priority = howOld_priority;
+	}
+
+	public Integer getFloor_priority() {
+		return floor_priority;
+	}
+
+	public void setFloor_priority(Integer floor_priority) {
+		this.floor_priority = floor_priority;
+	}
+
+	public Integer getGarage_priority() {
+		return garage_priority;
+	}
+
+	public void setGarage_priority(Integer garage_priority) {
+		this.garage_priority = garage_priority;
+	}
+
+	public Integer getParking_priority() {
+		return parking_priority;
+	}
+
+	public void setParking_priority(Integer parking_priority) {
+		this.parking_priority = parking_priority;
+	}
+
+	public Integer getGarden_priority() {
+		return garden_priority;
+	}
+
+	public void setGarden_priority(Integer garden_priority) {
+		this.garden_priority = garden_priority;
+	}
+
+	public Integer getCellar_priority() {
+		return cellar_priority;
+	}
+
+	public void setCellar_priority(Integer cellar_priority) {
+		this.cellar_priority = cellar_priority;
+	}
+
+	public Integer getMonitoring_priority() {
+		return monitoring_priority;
+	}
+
+	public void setMonitoring_priority(Integer monitoring_priority) {
+		this.monitoring_priority = monitoring_priority;
+	}
+
+	public Integer getLift_priority() {
+		return lift_priority;
+	}
+
+	public void setLift_priority(Integer lift_priority) {
+		this.lift_priority = lift_priority;
+	}
+
+	public Integer getAccessToPublicTransport_priority() {
+		return accessToPublicTransport_priority;
+	}
+
+	public void setAccessToPublicTransport_priority(Integer accessToPublicTransport_priority) {
+		this.accessToPublicTransport_priority = accessToPublicTransport_priority;
+	}
+	
+	
 
 }

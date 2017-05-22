@@ -1,17 +1,20 @@
 package piotrek.k.flats.Model;
 
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 
@@ -21,7 +24,7 @@ public class RealEstate {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long realEstate_id;
 	
 	@NotNull
 	@Column(length = 50)
@@ -58,17 +61,26 @@ public class RealEstate {
 	private String notes;
 
 	private Date supplementDate;
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "realEstate", cascade=CascadeType.REMOVE )
+	private List<RealEstateUser> realEstateUsers;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	public Long getId() {
-		return id;
+	
+	public Long getRealEstate_id() {
+		return realEstate_id;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setRealEstate_id(Long realEstate_id) {
+		this.realEstate_id = realEstate_id;
+	}
+
+	public List<RealEstateUser> getRealEstateUsers() {
+		return realEstateUsers;
+	}
+
+	public void setRealEstateUsers(List<RealEstateUser> realEstateUsers) {
+		this.realEstateUsers = realEstateUsers;
 	}
 
 	public String getLocation() {
@@ -239,12 +251,5 @@ public class RealEstate {
 		this.supplementDate = supplementDate;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 }

@@ -40,8 +40,8 @@ public class RealEstateController {
 
 	@RequestMapping(value = "/")
 	public String allMyRealEstate(Model model) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		model.addAttribute("realEstates", realEstateService.findByUser(user));
+//		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		model.addAttribute("realEstates", realEstateService.findAll());
 		return "realEstate/myRealEstates";
 	}
 
