@@ -178,7 +178,57 @@
 
 					</div>
 					<div class="col-sm-6">
-			
+
+
+
+						<div class="form-group">
+							<label class="control-label col-sm-5">Szacowany wkład własny 
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+								title="Suma szacowanych kosztów: remontu, umeblowania, ..."> 
+								<span class="glyphicon glyphicon-info-sign"></span></a>
+							</label>
+							<div class="col-sm-7">
+								<form:input  type="number"  min="0" step="0.01" max="99999999.99"
+								path="ownContribution"	name="ownContribution" class="form-control"
+									placeholder="Podaj przybliżone koszty remonyu, umeblowania, itp" />
+							 <c:if test="${pageContext.request.method=='POST'}">
+							 <form:errors path="ownContribution" class="my-form-error" /></c:if>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-5">Dystans dzienny: 
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+								title="ile kilometrów dziennie musisz dojeżdżać prytatnym środkiem
+								transportu. Podaj przybliżoną wartość średnią."> 
+								<span class="glyphicon glyphicon-info-sign"></span></a> 
+							</label>
+							<div class="col-sm-7">
+								<form:input type="number"  min="0" step="0.01" max="9999.99"
+								path="kmPerDay" name="kmPerDay"
+								class="form-control" placeholder="Podaj dystans w km" />
+							 <c:if test="${pageContext.request.method=='POST'}">
+							 <form:errors path="kmPerDay" class="my-form-error" /></c:if>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-5">Miesięczne koszty utrzymania
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+								title="Koszty związane z utrzymaniem nieruchomości np.:
+								czynsz, fundusz remontowy, podatek od nieruchomości, opłata gruntowa.
+								Podaj przybliżoną wartość."> 
+								<span class="glyphicon glyphicon-info-sign"></span></a> 
+							</label>
+							<div class="col-sm-7">
+								<form:input type="number"  min="0" step="0.01" max="99999.99"
+								path="maintenanceCosts" name="maintenanceCosts"
+									class="form-control" placeholder="Podaj przybliżone koszty" />
+							 <c:if test="${pageContext.request.method=='POST'}">
+							 <form:errors path="maintenanceCosts" class="my-form-error" /></c:if>
+							</div>
+						</div>
+
 						<div class="form-group">
 							<label class="control-label col-sm-5">Średnia cena w okolicy <br />
 								<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
@@ -207,6 +257,17 @@
 								<form:input type="url" path="advertismentsLink"
 									name="advertismentsLink" class="form-control"
 									placeholder="wpisz aders" />
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-5"> Notatki 
+							<a href="javascript:void(0);" data-toggle="tooltip" data-placement="bottom"
+								title="Osobiste notatki dotyczące ogłoszenia."> 
+								<span class="glyphicon glyphicon-info-sign"></span></a></label>
+							<div class="col-sm-7">
+								<form:textarea rows="5" cols="30" path="notes" name="notes"
+									class="form-control" placeholder="miejsce na notatki" />
 							</div>
 						</div>
 

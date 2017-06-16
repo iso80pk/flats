@@ -42,7 +42,7 @@ public class RealEstateController {
 	public String allMyRealEstate(Model model) {
 //		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("realEstates", realEstateService.findAll());
-		return "realEstate/myRealEstates";
+		return "realEstate/realEstatesList";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)

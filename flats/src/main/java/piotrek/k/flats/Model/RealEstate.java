@@ -10,13 +10,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
-
 
 @Entity
 @Table(name = "realEstate")
@@ -25,21 +24,21 @@ public class RealEstate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long realEstate_id;
-	
+
 	@NotNull
 	@Column(length = 50)
 	private String location;
-	
+
 	@NotNull
 	@Column(length = 35)
 	private String realEstateType;
-	
+
 	@NotNull
 	private Double floorArea;
-	
+
 	@NotNull
 	private Double price;
-	
+
 	@NotNull
 	private Integer numberOfRooms;
 	private Integer howOld;
@@ -51,36 +50,24 @@ public class RealEstate {
 	private Integer floor;
 	private Boolean monitoring;
 	private Boolean lift;
-	private Double ownContribution;
-	private Double kmPerDay;
-	private Double maintenanceCosts;
 	private Boolean accessToPublicTransport;
 	private Double averagePriceInArea;
 	private String advertismentsLink;
-	@Type(type="text")
-	private String notes;
-
 	private Date supplementDate;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private User supplementBy;
+
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "realEstate", cascade=CascadeType.REMOVE )
+	@OneToMany(mappedBy = "realEstate", cascade = CascadeType.REMOVE)
 	private List<RealEstateUser> realEstateUsers;
 
-	
 	public Long getRealEstate_id() {
 		return realEstate_id;
 	}
 
 	public void setRealEstate_id(Long realEstate_id) {
 		this.realEstate_id = realEstate_id;
-	}
-
-	public List<RealEstateUser> getRealEstateUsers() {
-		return realEstateUsers;
-	}
-
-	public void setRealEstateUsers(List<RealEstateUser> realEstateUsers) {
-		this.realEstateUsers = realEstateUsers;
 	}
 
 	public String getLocation() {
@@ -187,30 +174,6 @@ public class RealEstate {
 		this.lift = lift;
 	}
 
-	public Double getOwnContribution() {
-		return ownContribution;
-	}
-
-	public void setOwnContribution(Double ownContribution) {
-		this.ownContribution = ownContribution;
-	}
-
-	public Double getKmPerDay() {
-		return kmPerDay;
-	}
-
-	public void setKmPerDay(Double kmPerDay) {
-		this.kmPerDay = kmPerDay;
-	}
-
-	public Double getMaintenanceCosts() {
-		return maintenanceCosts;
-	}
-
-	public void setMaintenanceCosts(Double maintenanceCosts) {
-		this.maintenanceCosts = maintenanceCosts;
-	}
-	
 	public Boolean getAccessToPublicTransport() {
 		return accessToPublicTransport;
 	}
@@ -235,14 +198,6 @@ public class RealEstate {
 		this.advertismentsLink = advertismentsLink;
 	}
 
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
 	public Date getSupplementDate() {
 		return supplementDate;
 	}
@@ -251,5 +206,21 @@ public class RealEstate {
 		this.supplementDate = supplementDate;
 	}
 
+	public List<RealEstateUser> getRealEstateUsers() {
+		return realEstateUsers;
+	}
 
+	public void setRealEstateUsers(List<RealEstateUser> realEstateUsers) {
+		this.realEstateUsers = realEstateUsers;
+	}
+
+	public User getSupplementBy() {
+		return supplementBy;
+	}
+
+	public void setSupplementBy(User supplementBy) {
+		this.supplementBy = supplementBy;
+	}
+
+	
 }

@@ -88,6 +88,25 @@
 									<c:if test="${realEstate.accessToPublicTransport == false}">Nie</c:if></td>
 							</tr>
 							<tr>
+								<td>Szacowany wkład własny <br /> (remont,
+									umeblowanie...):
+								</td>
+								<td>${realEstate.ownContribution}</td>
+							</tr>
+							<tr>
+								<td>ile kilometrów dziennie <br> musisz dojeżdżać
+									prytatnym <br /> środkiem transportu:
+								</td>
+								<td>${realEstate.kmPerDay}</td>
+							</tr>
+							<tr>
+								<td>miesięczne koszty utrzymania<br /> (czynsz, fundusz
+									remontowy,<br /> podatek od nieruchomości,<br /> opłata
+									gruntowa.):
+								</td>
+								<td>${realEstate.maintenanceCosts}</td>
+							</tr>
+							<tr>
 								<td>Średnia cena nieruchomości w okolicy:</td>
 								<td>${realEstate.averagePriceInArea}</td>
 							</tr>
@@ -95,6 +114,12 @@
 								<td>Odnośnik do ogłoszenia:</td>
 								<td><a target="_blank" href="${realEstate.advertismentsLink}">KLIK</a></td>
 							</tr>
+							<tr>
+								<td>Notatki</td>
+								<td>${realEstate.notes}</td>
+							</tr>
+
+
 						</tbody>
 					</table>
 				</div>

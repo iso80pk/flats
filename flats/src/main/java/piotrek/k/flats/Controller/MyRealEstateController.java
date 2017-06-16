@@ -14,10 +14,10 @@ import piotrek.k.flats.Repository.IRealEstateInterface;
 import piotrek.k.flats.Repository.IRealEstateUserInterface;
 import piotrek.k.flats.Service.UserService;
 
-@RequestMapping(value = "/favouriteRealEstate")
+@RequestMapping(value = "/myRealEstate/")
 @Controller
 @Secured({ "ROLE_USER", "ROLE_ADMIN" })
-public class MyFavouriteRealEstateController {
+public class MyRealEstateController {
 
 	@Autowired
 	IRealEstateUserInterface iRealEstateUserInterface;
@@ -35,7 +35,7 @@ public class MyFavouriteRealEstateController {
 		realEstateUser.setRealEstate(realEstate);
 		realEstateUser.setNammedByUser("MARYNA");
 		iRealEstateUserInterface.save(realEstateUser);
-		return "realEstate/myRealEstates";
+		return "realEstateUser/myRealEstates";
 	}
 
 }

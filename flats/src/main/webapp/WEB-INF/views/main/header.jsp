@@ -48,7 +48,8 @@
 							data-toggle="dropdown" href="#">Nieruchomości<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="/userExpectations/">Moje oczekiwania</a></li>
-								<li><a href="/realEstate/">Nieruchomości do porównania</a></li>
+								<li><a href="/realEstate/">Dostępne oferty</a></li>
+								<li><a href="/myRealEstate/">Dostępne oferty</a></li>
 							</ul></li>
 					</sec:authorize>
 

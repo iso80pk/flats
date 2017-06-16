@@ -1,59 +1,32 @@
-package piotrek.k.flats.Model;
+package piotrek.k.flats.DTO;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
 
-import org.hibernate.annotations.Type;
+public class RealEstateUserDTO {
 
-@Entity
-@Table(name = "RealEstateUser")
-public class RealEstateUser {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
-
-	@ManyToOne
-	@JoinColumn(name = "realEstate_id")
-	private RealEstate realEstate;
-
+	private RealEstateDTO realEstateDTO;
+	
 	private String nammedByUser;
-
 	private Integer rankedPosition;
 	private Float adaptation; // dopasowanie
 	private Boolean fulfillsAllUserExpectation;
 	private Boolean favorite;
-
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "99999999.99", message = "Maksymalna wartoœæ to 99999999.99")
 	private Double ownContribution;
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "9999.99", message = "Maksymalna wartoœæ to 9999.99")
 	private Double kmPerDay;
+	@DecimalMin(value = "0.0", message = "Minimalna wartoœæ to 0")
+	@DecimalMax(value = "99999.99", message = "Maksymalna wartoœæ to 99999.99")
 	private Double maintenanceCosts;
-	@Type(type = "text")
 	private String notes;
-	public Long getId() {
-		return id;
+	public RealEstateDTO getRealEstateDTO() {
+		return realEstateDTO;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public RealEstate getRealEstate() {
-		return realEstate;
-	}
-	public void setRealEstate(RealEstate realEstate) {
-		this.realEstate = realEstate;
+	public void setRealEstateDTO(RealEstateDTO realEstateDTO) {
+		this.realEstateDTO = realEstateDTO;
 	}
 	public String getNammedByUser() {
 		return nammedByUser;
@@ -108,5 +81,6 @@ public class RealEstateUser {
 	}
 	public void setNotes(String notes) {
 		this.notes = notes;
-	}
+	}	
+	
 }

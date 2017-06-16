@@ -51,13 +51,13 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		realEstate.setFloor(form.getFloor());
 		realEstate.setMonitoring(form.getMonitoring());
 		realEstate.setLift(form.getLift());
-		realEstate.setOwnContribution(form.getOwnContribution());
-		realEstate.setKmPerDay(form.getKmPerDay());
-		realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
+//		realEstate.setOwnContribution(form.getOwnContribution());
+//		realEstate.setKmPerDay(form.getKmPerDay());
+//		realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
 		realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
 		realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
 		realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
-		realEstate.setNotes(form.getNotes());
+//		realEstate.setNotes(form.getNotes());
 		return realEstate;
 	}
 
