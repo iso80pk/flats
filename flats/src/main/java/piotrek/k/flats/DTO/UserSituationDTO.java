@@ -6,6 +6,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class UserSituationDTO {
 	
 	@NotNull(message="Pole jest wymagane")
@@ -23,30 +28,4 @@ public class UserSituationDTO {
 	@DecimalMax(value = "500.0", message = "Minimalna wartoœæ to 500")
 	private Double costOfPersonalCarUsage;
 
-	public Integer getNextRemoval() {
-		return nextRemoval;
-	}
-
-	public void setNextRemoval(Integer nextRemoval) {
-		this.nextRemoval = nextRemoval;
-	}
-
-	public Integer getNumberOfFamilyMembers() {
-		return numberOfFamilyMembers;
-	}
-
-	public void setNumberOfFamilyMembers(Integer numberOfFamilyMembers) {
-		this.numberOfFamilyMembers = numberOfFamilyMembers;
-	}
-
-	public Double getCostOfPersonalCarUsage() {
-		return costOfPersonalCarUsage;
-	}
-
-	public void setCostOfPersonalCarUsage(Double costOfPersonalCarUsage) {
-		this.costOfPersonalCarUsage = costOfPersonalCarUsage;
-	}
-
-	
-	
 }
