@@ -53,7 +53,12 @@ public class RealEstate {
 	private Boolean accessToPublicTransport;
 	private Double averagePriceInArea;
 	private String advertismentsLink;
+	private String sellerPhoneNumber;
 	private Date supplementDate;
+	
+	private Boolean active;
+	private Boolean availableToOtherUsers;
+	private Boolean isUnavailable;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private User supplementBy;

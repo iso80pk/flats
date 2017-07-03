@@ -75,7 +75,9 @@ public class User {
 	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
 	private ImportanceOfExpectations importanceOfExpectations;
 	
-	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
+	private List<Priority> priorities;
 
 	public Long getId() {
 		return id;
