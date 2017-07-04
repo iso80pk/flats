@@ -7,6 +7,11 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class RealEstateDTO {
 
 	private Long id;
@@ -54,142 +59,5 @@ public class RealEstateDTO {
 	private Double averagePriceInArea;
 
 	private String advertismentsLink;
-
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getLocation() {
-		return location;
-	}
-
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getRealEstateType() {
-		return realEstateType;
-	}
-
-	public void setRealEstateType(String realEstateType) {
-		this.realEstateType = realEstateType;
-	}
-
-	public Double getFloorArea() {
-		return floorArea;
-	}
-
-	public void setFloorArea(Double floorArea) {
-		this.floorArea = floorArea;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public void setPrice(Double price) {
-		this.price = price;
-	}
-
-	public Integer getNumberOfRooms() {
-		return numberOfRooms;
-	}
-
-	public void setNumberOfRooms(Integer numberOfRooms) {
-		this.numberOfRooms = numberOfRooms;
-	}
-
-	public Integer getHowOld() {
-		return howOld;
-	}
-
-	public void setHowOld(Integer howOld) {
-		this.howOld = howOld;
-	}
-
-	public Integer getFloor() {
-		return floor;
-	}
-
-	public void setFloor(Integer floor) {
-		this.floor = floor;
-	}
-
-	public Boolean getGarage() {
-		return garage;
-	}
-
-	public void setGarage(Boolean garage) {
-		this.garage = garage;
-	}
-
-	public Boolean getParking() {
-		return parking;
-	}
-
-	public void setParking(Boolean parking) {
-		this.parking = parking;
-	}
-
-	public Boolean getGarden() {
-		return garden;
-	}
-
-	public void setGarden(Boolean garden) {
-		this.garden = garden;
-	}
-
-	public Boolean getCellar() {
-		return cellar;
-	}
-
-	public void setCellar(Boolean cellar) {
-		this.cellar = cellar;
-	}
-
-	public Boolean getMonitoring() {
-		return monitoring;
-	}
-
-	public void setMonitoring(Boolean monitoring) {
-		this.monitoring = monitoring;
-	}
-
-	public Boolean getLift() {
-		return lift;
-	}
-
-	public void setLift(Boolean lift) {
-		this.lift = lift;
-	}
-
-	public Boolean getAccessToPublicTransport() {
-		return accessToPublicTransport;
-	}
-
-	public void setAccessToPublicTransport(Boolean accessToPublicTransport) {
-		this.accessToPublicTransport = accessToPublicTransport;
-	}
-
-	public Double getAveragePriceInArea() {
-		return averagePriceInArea;
-	}
-
-	public void setAveragePriceInArea(Double averagePriceInArea) {
-		this.averagePriceInArea = averagePriceInArea;
-	}
-
-	public String getAdvertismentsLink() {
-		return advertismentsLink;
-	}
-
-	public void setAdvertismentsLink(String advertismentsLink) {
-		this.advertismentsLink = advertismentsLink;
-	}
 
 }

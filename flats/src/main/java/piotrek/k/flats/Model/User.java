@@ -1,6 +1,5 @@
 package piotrek.k.flats.Model;
 
-
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +17,11 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "user")
 public class User {
@@ -52,153 +56,31 @@ public class User {
 	private String phoneNumber;
 
 	private Date signUpDate;
-	
+
 	private Date lastLoggedInDate;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Roles> roles;
-	
+
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<RealEstateUser> realEstateUsers;
 
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private UserSituation userSituation;
-	
+
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private UserExpectations userExpectations;
-	
+
 	@LazyCollection(LazyCollectionOption.TRUE)
-	@OneToOne(mappedBy = "user" , cascade=CascadeType.REMOVE)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private ImportanceOfExpectations importanceOfExpectations;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user", cascade=CascadeType.REMOVE )
 	private List<Priority> priorities;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public boolean isEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public Date getSignUpDate() {
-		return signUpDate;
-	}
-
-	public void setSignUpDate(Date signUpDate) {
-		this.signUpDate = signUpDate;
-	}
-
-	public List<Roles> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Roles> roles) {
-		this.roles = roles;
-	}
-
-//	public List<RealEstate> getRealEstates() {
-//		return realEstates;
-//	}
-//
-//	public void setRealEstates(List<RealEstate> realEstates) {
-//		this.realEstates = realEstates;
-//	}
-
-	public UserSituation getUserSituation() {
-		return userSituation;
-	}
-
-	public void setUserSituation(UserSituation userSituation) {
-		this.userSituation = userSituation;
-	}
-
-	public Date getLastLoggedInDate() {
-		return lastLoggedInDate;
-	}
-
-	public void setLastLoggedInDate(Date lastLoggedInDate) {
-		this.lastLoggedInDate = lastLoggedInDate;
-	}
-
-	public UserExpectations getUserExpectations() {
-		return userExpectations;
-	}
-
-	public void setUserExpectations(UserExpectations userExpectations) {
-		this.userExpectations = userExpectations;
-	}
-
-	public ImportanceOfExpectations getImportanceOfExpectations() {
-		return importanceOfExpectations;
-	}
-
-	public void setImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations) {
-		this.importanceOfExpectations = importanceOfExpectations;
-	}
-	
-	
 
 }
