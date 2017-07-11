@@ -21,8 +21,8 @@ public abstract class BaseService<T extends CrudRepository<M, Long>,M> {
 		return (List<M>) daoInterface.findAll();
 	}
 
-	public void addOrUpdate(M model) {
-		daoInterface.save(model);
+	public M addOrUpdate(M model) {
+		return daoInterface.save(model);
 	}
 
 	public void delete(Long id) {

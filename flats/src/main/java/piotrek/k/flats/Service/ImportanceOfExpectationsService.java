@@ -10,9 +10,13 @@ import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Repository.IImportanceOfExpectationsInterface;
 
 @Service
-public class ImportanceOfExpectationsService extends BaseService<IImportanceOfExpectationsInterface, ImportanceOfExpectations> {
+public class ImportanceOfExpectationsService
+		extends BaseService<IImportanceOfExpectationsInterface, ImportanceOfExpectations> {
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	private PriorityService priorityService;
 
 	public ImportanceOfExpectations findByUser(User user) {
 		return daoInterface.findByUser(user);
@@ -24,14 +28,19 @@ public class ImportanceOfExpectationsService extends BaseService<IImportanceOfEx
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		importanceOfExpectations.setUser(user);
 
-		addOrUpdate(importanceOfExpectations);
+		importanceOfExpectations = addOrUpdate(importanceOfExpectations);
+		priorityService.createFirstPriorityforLoggedUser(importanceOfExpectations);
 	}
 
-	public void updateImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations, ImportanceOfExpectationsDTO form) {
-		addOrUpdate(initialize(importanceOfExpectations, form));
+	public void updateImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations,
+			ImportanceOfExpectationsDTO form) {
+		
+		importanceOfExpectations = addOrUpdate(initialize(importanceOfExpectations, form));
+		priorityService.createFirstPriorityforLoggedUser(importanceOfExpectations);
 	}
 
-	private ImportanceOfExpectations initialize(ImportanceOfExpectations importanceOfExpectations, ImportanceOfExpectationsDTO form) {
+	private ImportanceOfExpectations initialize(ImportanceOfExpectations importanceOfExpectations,
+			ImportanceOfExpectationsDTO form) {
 		importanceOfExpectations.setLocation(form.getLocation());
 		importanceOfExpectations.setRealEstateType(form.getRealEstateType());
 		importanceOfExpectations.setFloorArea(form.getFloorArea());

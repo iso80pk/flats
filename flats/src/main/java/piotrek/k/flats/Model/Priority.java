@@ -12,17 +12,29 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @Entity
 @Table(name = "Priority")
 public class Priority {
 	
+	public Priority() {
+	}
+
+	public Priority(Integer degree, String name, Double importance, User user) {
+		super();
+		this.degree = degree;
+		this.name = name;
+		this.importance = importance;
+		this.user = user;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private Integer	degreeOfValidity;
+	private Integer degree;
 	private String name;
 	private Double importance;
 	
