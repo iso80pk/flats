@@ -1,10 +1,13 @@
 package piotrek.k.flats.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import piotrek.k.flats.DTO.UserExpectationsDTO;
+import piotrek.k.flats.Model.Priority;
 import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Model.UserExpectations;
 import piotrek.k.flats.Repository.IUserExpectationsInterface;
@@ -15,8 +18,15 @@ public class UserExpectationsService extends BaseService<IUserExpectationsInterf
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	PriorityService priorityService;
+	
 	public UserExpectations findByUser(User user) {
 		return daoInterface.findByUser(user);
+	}
+	
+	public List<Priority> getGroupByUser(User user){
+		return priorityService.daoInterface.findByUser(user);
 	}
 
 	public void addUserExpectations(UserExpectationsDTO form) {

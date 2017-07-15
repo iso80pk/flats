@@ -34,9 +34,7 @@ public class ImportanceOfExpectationsService
 
 	public void updateImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations,
 			ImportanceOfExpectationsDTO form) {
-		
-		importanceOfExpectations = addOrUpdate(initialize(importanceOfExpectations, form));
-		priorityService.createFirstPriorityforLoggedUser(importanceOfExpectations);
+		addOrUpdate(initialize(importanceOfExpectations, form));
 	}
 
 	private ImportanceOfExpectations initialize(ImportanceOfExpectations importanceOfExpectations,

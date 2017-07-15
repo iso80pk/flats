@@ -58,6 +58,7 @@
 									<th></th>
 									<th>Oczekiwania</th>
 									<th>Ważność</th>
+									<th>Grupa</th>
 
 								</tr>
 							</thead>
@@ -77,6 +78,7 @@
 									 </c:forEach>
 									
 									${importanceOfExpectations.location}/10</td>
+									<td class=" my-center">${importanceOfExpectations.location_priority}</td>
 								</tr>
 								<tr>
 									<td>Typ nieruchomości:</td>
@@ -89,6 +91,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									${importanceOfExpectations.realEstateType}/10</td>
+									<td class=" my-center">${importanceOfExpectations.realEstateType_priority}</td>
 								</tr>
 								<tr>
 									<td>Powierzchnia [m2]:</td>
@@ -102,6 +105,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.floorArea}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.floorArea_priority}</td>
 								</tr>
 								<tr>
 									<td>Cena:</td>
@@ -115,6 +119,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.price}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.price_priority}</td>
 								</tr>
 								<tr>
 									<td>ilość pokoi:</td>
@@ -128,6 +133,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.numberOfRooms}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.numberOfRooms_priority}</td>
 								</tr>
 								<tr>
 									<td>wiek nieruchomości:</td>
@@ -141,6 +147,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.howOld}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.howOld_priority}</td>
 								</tr>
 								<tr>
 									<td>piętro:</td>
@@ -154,6 +161,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.floor}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.floor_priority}</td>
 								</tr>
 								<tr>
 									<td>Garaż</td>
@@ -167,6 +175,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.garage}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.garage_priority}</td>
 								</tr>
 								<tr>
 									<td>Parking</td>
@@ -180,6 +189,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.parking}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.parking_priority}</td>
 								</tr>
 								<tr>
 									<td>Ogród</td>
@@ -193,6 +203,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.garden}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.garden_priority}</td>
 								</tr>
 								<tr>
 									<td>Piwnica</td>
@@ -206,6 +217,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.cellar}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.cellar_priority}</td>
 								</tr>
 								<tr>
 									<td>Monitoring</td>
@@ -219,6 +231,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.monitoring}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.monitoring_priority}</td>
 								</tr>
 								<tr>
 									<td>Winda</td>
@@ -232,6 +245,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.lift}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.lift_priority}</td>
 								</tr>
 								<tr>
 									<td>Dostęp do transportu publicznego</td>
@@ -247,6 +261,7 @@
 									 <span class="glyphicon glyphicon-star-empty" style="color:#0047b3"></span>
 									 </c:forEach>
 									 ${importanceOfExpectations.accessToPublicTransport}/10</td>
+									 <td class=" my-center">${importanceOfExpectations.accessToPublicTransport_priority}</td>
 								</tr>
 
 
@@ -261,6 +276,9 @@
 									</td>
     								<td><div class="row my-center">
 									<a class="btn btn-primary" href="editImportanceOfExpectations" role="button">Edytuj oceny</a>
+									</div></td>
+									<td><div class="row my-center">
+									<a class="btn btn-primary" href="editImportanceOfExpectations" role="button">Edytuj grupy</a>
 									</div></td>
    								</tr>
  							</tfoot>

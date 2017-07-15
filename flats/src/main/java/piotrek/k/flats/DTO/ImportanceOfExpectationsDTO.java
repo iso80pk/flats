@@ -65,5 +65,21 @@ public class ImportanceOfExpectationsDTO {
 	@Min(0)
 	@Max(10)
 	private Integer accessToPublicTransport;
+	
+	
+	private Integer location_priority;
+	private Integer realEstateType_priority;
+	private Integer floorArea_priority;
+	private Integer price_priority;
+	private Integer numberOfRooms_priority;
+	private Integer howOld_priority;
+	private Integer floor_priority;
+	private Integer garage_priority;
+	private Integer parking_priority;
+	private Integer garden_priority;
+	private Integer cellar_priority;
+	private Integer monitoring_priority;
+	private Integer lift_priority;
+	private Integer accessToPublicTransport_priority;
 
 }
