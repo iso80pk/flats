@@ -1,6 +1,9 @@
 package piotrek.k.flats.Service;
 
 import java.time.ZonedDateTime;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.Date;
 
 import org.springframework.stereotype.Service;
@@ -51,14 +54,57 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		realEstate.setFloor(form.getFloor());
 		realEstate.setMonitoring(form.getMonitoring());
 		realEstate.setLift(form.getLift());
-//		realEstate.setOwnContribution(form.getOwnContribution());
-//		realEstate.setKmPerDay(form.getKmPerDay());
-//		realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
+		// realEstate.setOwnContribution(form.getOwnContribution());
+		// realEstate.setKmPerDay(form.getKmPerDay());
+		// realEstate.setMaintenanceCosts(form.getMaintenanceCosts());
 		realEstate.setAccessToPublicTransport(form.getAccessToPublicTransport());
 		realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
 		realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
-//		realEstate.setNotes(form.getNotes());
+		// realEstate.setNotes(form.getNotes());
 		return realEstate;
+	}
+
+	public RealEstate searchDataInContentOfAdvertisement(String text) {
+		String advertisementText = text.toLowerCase().trim();
+		RealEstate realEstate = new RealEstate();
+		String find = "cen";
+
+		System.out.println(tryFindIntegerValue(advertisementText,find));
+		System.out.println(tryFindIntegerValue(advertisementText,"cen"));
+
+	
+		realEstate.setLocation("Lublin");
+		return realEstate;
+	}
+
+	private Integer tryFindIntegerValue(String advertisementText, String searchingText) {
+		if (advertisementText.contains(searchingText)) {
+			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),advertisementText.indexOf(searchingText) + 30);
+			Matcher matcher = Pattern.compile("(\\d)+((,| |\\.)(\\d)+)?").matcher(substring);
+			matcher.find();
+			try {
+				return Integer.parseInt(matcher.group().replaceAll("(,| |\\.)", ""));
+			} catch (Exception e) {
+				return null;
+			}
+		}
+		return null;
+	}
+	
+	private Double tryFindDoubleValue(String advertisementText, String searchingText) {
+		if (advertisementText.contains(searchingText)) {
+			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),advertisementText.indexOf(searchingText) + 30);
+			
+			
+			Matcher matcher = Pattern.compile("(\\d)+((,|\\.)(\\d{0,2}))?").matcher(substring);
+			matcher.find();
+			try {
+				return Double.parseDouble(matcher.group().replaceAll(",", "."));
+			} catch (Exception e) {
+				return null;
+			}
+		}
+		return null;
 	}
 
 }

@@ -18,12 +18,15 @@
 
 	<div class="row">
 		<div class="text-center">
-			<h2>Nieruchomość</h2>
 			<br />
+			<h2>Wynik wyszukiwania danych</h2>
+			<h4>Uzupełnij brakujące dane</h4>
 		</div>
 	</div>
 
-	<form:form method="POST" class="form-horizontal" modelAttribute="form">
+	<form:form method="POST"
+		action="${pageContext.request.contextPath}/realEstate/addAfterSearchData"
+		class="form-horizontal" modelAttribute="form">
 		<div class="row">
 			<div class="col-sm-6">
 

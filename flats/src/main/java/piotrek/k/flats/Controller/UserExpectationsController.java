@@ -170,5 +170,20 @@ public class UserExpectationsController {
 		}
 	}
 	
+//	@RequestMapping(value = "/editGroup", method = RequestMethod.GET)
+//	public String editGroupGET(Model model) {
+//		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+//		ImportanceOfExpectations importanceOfExpectations = importanceOfExpectationsService.findByUser(user);
+//		if (importanceOfExpectations == null)
+//			return "redirect:/userExpectations/addImportanceOfExpectations";
+//		else {
+//			UserExpectations userExpectations = userExpectationsService.findByUser(user);
+//			model.addAttribute("userExpectations", userExpectations);
+//			model.addAttribute("importanceForm", importanceOfExpectations);
+//			return "userExpectations/editGroup";
+//		}
+//		
+//	}
+	
 	
 }

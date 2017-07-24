@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import piotrek.k.flats.DTO.RealEsateSearchDataDTO;
 import piotrek.k.flats.DTO.RealEstateDTO;
 import piotrek.k.flats.Model.RealEstate;
 import piotrek.k.flats.Model.User;
@@ -38,19 +39,22 @@ public class RealEstateController {
 		return new RealEstateDTO();
 	}
 
+	@ModelAttribute("searchData")
+	public RealEsateSearchDataDTO searchData() {
+		return new RealEsateSearchDataDTO();
+	}
+
 	@RequestMapping(value = "/")
-	public String allMyRealEstate(Model model) {
-//		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+	public String allRealEstate(Model model) {
+		// User user =
+		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("realEstates", realEstateService.findAll());
 		return "realEstate/realEstatesList";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String realEstateFormGet(Model model) {
-		Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
-		realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
-		realEstateTypes.put("DOM", "DOM");
-		model.addAttribute("realEstateTypes", realEstateTypes);
+		addRealEstateTypesToModel(model);
 		return "realEstate/realEstateForm";
 	}
 
@@ -64,6 +68,32 @@ public class RealEstateController {
 		}
 	}
 
+	@RequestMapping(value = "/searchData", method = RequestMethod.GET)
+	public String searchDataGet() {
+		return "realEstate/realEstateSearchDataForm";
+	}
+
+	@RequestMapping(value = "/searchData", method = RequestMethod.POST)
+	public String searchDataPost(@ModelAttribute("searchData") @Valid RealEsateSearchDataDTO form, Model model) {
+		RealEstate realEstate = realEstateService.searchDataInContentOfAdvertisement(form.getText());
+		model.addAttribute("form", realEstate);
+		addRealEstateTypesToModel(model);
+		return "realEstate/realEstateFormAfterSearchData";
+	}
+
+
+	
+	@RequestMapping(value = "/addAfterSearchData", method = RequestMethod.POST)
+	public String realEstateFormAfterSearchDataPost(@ModelAttribute("form") @Valid RealEstateDTO form, BindingResult result) {
+		if (result.hasErrors())
+			return "realEstate/realEstateFormAfterSearchData";
+		else {
+			realEstateService.addRealEstate(form);
+			return "redirect:../realEstate/";
+		}
+	}
+	
+
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editRealEstateGET(@PathVariable("id") Long id, Model model) {
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
@@ -74,10 +104,7 @@ public class RealEstateController {
 			return "redirect:/403";
 		else {
 			model.addAttribute("form", realEstate);
-			Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
-			realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
-			realEstateTypes.put("DOM", "DOM");
-			model.addAttribute("realEstateTypes", realEstateTypes);
+			addRealEstateTypesToModel(model);
 			return "realEstate/realEstateForm";
 
 		}
@@ -133,6 +160,13 @@ public class RealEstateController {
 			realEstateService.delete(id);
 			return "redirect:../realEstate/";
 		}
+	}
+	
+	private void addRealEstateTypesToModel(Model model) {
+		Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
+		realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
+		realEstateTypes.put("DOM", "DOM");
+		model.addAttribute("realEstateTypes", realEstateTypes);
 	}
 
 }
