@@ -67,19 +67,25 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 	public RealEstate searchDataInContentOfAdvertisement(String text) {
 		String advertisementText = text.toLowerCase().trim();
 		RealEstate realEstate = new RealEstate();
-		String find = "cen";
+		realEstate.setPrice((double)tryFindIntegerValue(advertisementText, "cen"));
+		realEstate.setFloorArea(tryFindDoubleValue(advertisementText, "powierzch"));
+		realEstate.setNumberOfRooms(tryFindIntegerValue(advertisementText, "poko"));
+		realEstate.setFloor(tryFindIntegerValue(advertisementText, "piêtr"));
+		
+		
 
-		System.out.println(tryFindIntegerValue(advertisementText,find));
-		System.out.println(tryFindIntegerValue(advertisementText,"cen"));
-
-	
 		realEstate.setLocation("Lublin");
 		return realEstate;
 	}
 
 	private Integer tryFindIntegerValue(String advertisementText, String searchingText) {
 		if (advertisementText.contains(searchingText)) {
-			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),advertisementText.indexOf(searchingText) + 30);
+			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),
+					advertisementText.length());
+
+			if (substring.length() > 31) {
+				substring = substring.substring(0, 30);
+			}
 			Matcher matcher = Pattern.compile("(\\d)+((,| |\\.)(\\d)+)?").matcher(substring);
 			matcher.find();
 			try {
@@ -90,17 +96,23 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		}
 		return null;
 	}
-	
+
 	private Double tryFindDoubleValue(String advertisementText, String searchingText) {
 		if (advertisementText.contains(searchingText)) {
-			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),advertisementText.indexOf(searchingText) + 30);
-			
-			
+			String substring = advertisementText.substring(advertisementText.indexOf(searchingText),
+					advertisementText.length());
+
+			if (substring.length() > 31) {
+				substring = substring.substring(0, 30);
+			}
+
 			Matcher matcher = Pattern.compile("(\\d)+((,|\\.)(\\d{0,2}))?").matcher(substring);
 			matcher.find();
 			try {
 				return Double.parseDouble(matcher.group().replaceAll(",", "."));
 			} catch (Exception e) {
+
+				System.out.println(e.getMessage());
 				return null;
 			}
 		}
