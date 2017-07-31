@@ -15,7 +15,6 @@ import lombok.Setter;
 public class RealEstateDTO {
 
 	private Long id;
-	@NotNull(message = "Pole jest wymagane")
 	@Size(min = 3, max = 50, message = "Pole mo¿e zawieraæ od 3 do 50 znaków")
 	private String location;
 
@@ -39,7 +38,6 @@ public class RealEstateDTO {
 
 	@Min(value = 0, message = "Wartoœæ nie mo¿e byæ ujemna")
 	@Max(value = 500, message = "Wartoœæ powinna wynosiæ co najwy¿ej 500")
-	@NotNull(message = "Pole jest wymagane")
 	private Integer howOld;
 
 	@Min(value = 0, message = "Wartoœæ nie mo¿e byæ ujemna")
@@ -53,6 +51,10 @@ public class RealEstateDTO {
 	private Boolean monitoring;
 	private Boolean lift;
 	private Boolean accessToPublicTransport;
+
+	private String sellerPhoneNumber;
+	private Boolean active;
+	private Boolean availableToOtherUsers;
 
 	@DecimalMin(value = "100.0", message = "Minimalna wartoœæ to 100")
 	@DecimalMax(value = "999999.99", message = "Maksymalna wartoœæ to 999999.99")

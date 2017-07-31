@@ -146,45 +146,73 @@
 					</div>
 				</div>
 
+
+
 				<div class="form-group">
 					<label class="control-label col-sm-5">Garaż</label>
 					<div class="col-sm-7">
-						<form:checkbox path="garage" />
+						<form:select path="garage" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="garage" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
+
+
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Parking</label>
 					<div class="col-sm-7">
-						<form:checkbox path="parking" />
+						<form:select path="parking" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="parking" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Ogród</label>
 					<div class="col-sm-7">
-						<form:checkbox path="garden" />
+						<form:select path="garden" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="garden" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Piwnica</label>
 					<div class="col-sm-7">
-						<form:checkbox path="cellar" />
+						<form:select path="cellar" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="cellar" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Monitoring</label>
 					<div class="col-sm-7">
-						<form:checkbox path="monitoring" />
+						<form:select path="monitoring" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="monitoring" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Winda</label>
 					<div class="col-sm-7">
-						<form:checkbox path="lift" />
+						<form:select path="lift" items="${booleanValues}"
+							class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="lift" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
@@ -192,7 +220,11 @@
 					<label class="control-label col-sm-5">Dostęp do transportu
 						publicznego</label>
 					<div class="col-sm-7">
-						<form:checkbox path="accessToPublicTransport" />
+						<form:select path="accessToPublicTransport"
+							items="${booleanValues}" class="form-control" />
+						<c:if test="${pageContext.request.method=='POST'}">
+							<form:errors path="accessToPublicTransport" class="my-form-error" />
+						</c:if>
 					</div>
 				</div>
 
@@ -232,6 +264,34 @@
 						<form:input type="url" path="advertismentsLink"
 							name="advertismentsLink" class="form-control"
 							placeholder="wpisz aders" />
+					</div>
+				</div>
+
+
+				<div class="form-group">
+					<label class="control-label col-sm-5"> numer telefonu
+						sprzedającego <a href="javascript:void(0);" data-toggle="tooltip"
+						data-placement="bottom"
+						title="Podanie numeru telefonu srzedającego ułatwi z nim kontakt.">
+							<span class="glyphicon glyphicon-info-sign"></span>
+					</a>
+					</label>
+					<div class="col-sm-7">
+						<form:input path="sellerPhoneNumber" name="sellerPhoneNumber"
+							class="form-control" placeholder="podaj numer" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-5">Dostępne dla innych
+						użytkowników<a href="javascript:void(0);" data-toggle="tooltip"
+						data-placement="bottom"
+						title="Odznaczenie tej opcji spowoduje, ze ogłoszenie nie będzie widoczne dla innych użytkowników.">
+							<span class="glyphicon glyphicon-info-sign"></span>
+					</a>
+					</label>
+					<div class="col-sm-7">
+						<form:checkbox path="availableToOtherUsers" checked="true" />
 					</div>
 				</div>
 

@@ -34,6 +34,8 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		realEstate.setSupplementBy(user);
+		realEstate.setActive(true);
+		realEstate.setIsUnavailable(false);
 
 		addOrUpdate(realEstate);
 	}
@@ -64,6 +66,9 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		realEstate.setAveragePriceInArea(form.getAveragePriceInArea());
 		realEstate.setAdvertismentsLink(form.getAdvertismentsLink());
 		// realEstate.setNotes(form.getNotes());
+		realEstate.setSellerPhoneNumber(form.getSellerPhoneNumber());
+		realEstate.setActive(form.getActive());
+		realEstate.setAvailableToOtherUsers(form.getAvailableToOtherUsers());
 		return realEstate;
 	}
 

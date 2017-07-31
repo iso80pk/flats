@@ -95,6 +95,11 @@
 								<td>Odnośnik do ogłoszenia:</td>
 								<td><a target="_blank" href="${realEstate.advertismentsLink}">KLIK</a></td>
 							</tr>
+							
+							<tr>
+								<td>Numer telefonu sprzedającego:</td>
+								<td>${realEstate.sellerPhoneNumber}</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>

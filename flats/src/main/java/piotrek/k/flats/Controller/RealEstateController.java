@@ -55,6 +55,7 @@ public class RealEstateController {
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String realEstateFormGet(Model model) {
 		addRealEstateTypesToModel(model);
+		addBooleanTypesToModel(model);
 		return "realEstate/realEstateForm";
 	}
 
@@ -78,6 +79,7 @@ public class RealEstateController {
 		RealEstate realEstate = realEstateService.searchDataInContentOfAdvertisement(form.getText());
 		model.addAttribute("form", realEstate);
 		addRealEstateTypesToModel(model);
+		addBooleanTypesToModel(model);
 		return "realEstate/realEstateFormAfterSearchData";
 	}
 
@@ -105,6 +107,7 @@ public class RealEstateController {
 		else {
 			model.addAttribute("form", realEstate);
 			addRealEstateTypesToModel(model);
+			addBooleanTypesToModel(model);
 			return "realEstate/realEstateForm";
 
 		}
@@ -167,6 +170,14 @@ public class RealEstateController {
 		realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
 		realEstateTypes.put("DOM", "DOM");
 		model.addAttribute("realEstateTypes", realEstateTypes);
+	}
+	
+	private void addBooleanTypesToModel(Model model) {
+		Map<Boolean, String> booleanValues = new LinkedHashMap<Boolean, String>();
+		booleanValues.put(null,"Brak informacji");
+		booleanValues.put(true, "TAK");
+		booleanValues.put(false, "NIE");
+		model.addAttribute("booleanValues", booleanValues);
 	}
 
 }

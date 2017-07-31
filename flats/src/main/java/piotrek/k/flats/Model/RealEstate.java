@@ -9,8 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -60,13 +60,12 @@ public class RealEstate {
 	private String advertismentsLink;
 	private String sellerPhoneNumber;
 	private Date supplementDate;
-	
+
 	private Boolean active;
 	private Boolean availableToOtherUsers;
 	private Boolean isUnavailable;
-	
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private User supplementBy;
 
 	@LazyCollection(LazyCollectionOption.FALSE)
