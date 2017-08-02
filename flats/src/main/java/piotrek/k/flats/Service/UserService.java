@@ -4,6 +4,8 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -47,7 +49,7 @@ public class UserService extends BaseService<IUserInterface, User> {
 	public boolean isUserWithEmail(String email) {
 		return (daoInterface.findByEmail(email) != null);
 	}
-	
+
 	public boolean isUserWithUsername(String username) {
 		return (daoInterface.findByUsername(username) != null);
 	}
@@ -64,6 +66,21 @@ public class UserService extends BaseService<IUserInterface, User> {
 			if (role.getRole().equals("ROLE_USER"))
 				return role;
 		return null;
+	}
+
+	public Boolean isAdminLoggedUser() {
+		return loggedUserHasRole("ROLE_ADMIN");
+	}
+
+	public Boolean isUserLoggedUser() {
+		return loggedUserHasRole("ROLE_USER");
+	}
+
+	public Boolean loggedUserHasRole(String roleName) {
+		for (GrantedAuthority authority : SecurityContextHolder.getContext().getAuthentication().getAuthorities())
+			if (authority.getAuthority().equals(roleName))
+				return true;
+		return false;
 	}
 
 	public String makePasword(String password) {

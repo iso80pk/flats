@@ -7,7 +7,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import piotrek.k.flats.DTO.RealEsateSearchDataDTO;
 import piotrek.k.flats.DTO.RealEstateDTO;
 import piotrek.k.flats.Model.RealEstate;
-import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Service.RealEstateService;
 import piotrek.k.flats.Service.UserService;
 
@@ -49,6 +47,12 @@ public class RealEstateController {
 		// User user =
 		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("realEstates", realEstateService.findAll());
+		return "realEstate/realEstatesList";
+	}
+
+	@RequestMapping(value = "/notAssignedToMe")
+	public String notAssignedToMe(Model model) {
+		model.addAttribute("realEstates", realEstateService.findNotAssignedToMe());
 		return "realEstate/realEstatesList";
 	}
 
@@ -83,10 +87,9 @@ public class RealEstateController {
 		return "realEstate/realEstateFormAfterSearchData";
 	}
 
-
-	
 	@RequestMapping(value = "/addAfterSearchData", method = RequestMethod.POST)
-	public String realEstateFormAfterSearchDataPost(@ModelAttribute("form") @Valid RealEstateDTO form, BindingResult result) {
+	public String realEstateFormAfterSearchDataPost(@ModelAttribute("form") @Valid RealEstateDTO form,
+			BindingResult result) {
 		if (result.hasErrors())
 			return "realEstate/realEstateFormAfterSearchData";
 		else {
@@ -94,22 +97,20 @@ public class RealEstateController {
 			return "redirect:../realEstate/";
 		}
 	}
-	
 
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.GET)
 	public String editRealEstateGET(@PathVariable("id") Long id, Model model) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		RealEstate realEstate = realEstateService.findById(id);
 		if (realEstate == null)
 			return "redirect:/404";
-		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+		else if (!realEstateService.canIEdit(realEstate))
 			return "redirect:/403";
 		else {
+			realEstateService.canIEdit(realEstate);
 			model.addAttribute("form", realEstate);
 			addRealEstateTypesToModel(model);
 			addBooleanTypesToModel(model);
 			return "realEstate/realEstateForm";
-
 		}
 
 	}
@@ -117,11 +118,10 @@ public class RealEstateController {
 	@RequestMapping(value = "/edit-{id}", method = RequestMethod.POST)
 	public String editRealEstatePOST(@PathVariable("id") Long id, @ModelAttribute("form") @Valid RealEstateDTO form,
 			BindingResult result) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		RealEstate realEstate = realEstateService.findById(id);
 		if (realEstate == null)
 			return "redirect:/404";
-		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+		else if (!realEstateService.canIEdit(realEstate))
 			return "redirect:/403";
 		else {
 			if (result.hasErrors()) {
@@ -138,12 +138,13 @@ public class RealEstateController {
 
 	@RequestMapping(value = "/details-{id}")
 	public String realEstateDetails(@PathVariable("id") Long id, Model model) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		// User user =
+		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		RealEstate realEstate = realEstateService.findById(id);
 		if (realEstate == null)
 			return "redirect:/404";
-		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
-			return "redirect:/403";
+		// else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+		// return "redirect:/403";
 		else {
 
 			model.addAttribute("realEstate", realEstate);
@@ -153,28 +154,29 @@ public class RealEstateController {
 
 	@RequestMapping(value = "/delete-{id}")
 	public String deleteUserById(@PathVariable("id") Long id) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		// User user =
+		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		RealEstate realEstate = realEstateService.findById(id);
 		if (realEstate == null)
 			return "redirect:/404";
-		else if (!realEstateService.itIsMyRealEstate(user, realEstate))
-			return "redirect:/403";
+		// else if (!realEstateService.itIsMyRealEstate(user, realEstate))
+		// return "redirect:/403";
 		else {
 			realEstateService.delete(id);
 			return "redirect:../realEstate/";
 		}
 	}
-	
+
 	private void addRealEstateTypesToModel(Model model) {
 		Map<String, String> realEstateTypes = new LinkedHashMap<String, String>();
 		realEstateTypes.put("MIESZKANIE", "MIESZKANIE");
 		realEstateTypes.put("DOM", "DOM");
 		model.addAttribute("realEstateTypes", realEstateTypes);
 	}
-	
+
 	private void addBooleanTypesToModel(Model model) {
 		Map<Boolean, String> booleanValues = new LinkedHashMap<Boolean, String>();
-		booleanValues.put(null,"Brak informacji");
+		booleanValues.put(null, "Brak informacji");
 		booleanValues.put(true, "TAK");
 		booleanValues.put(false, "NIE");
 		model.addAttribute("booleanValues", booleanValues);

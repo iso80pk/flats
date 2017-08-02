@@ -3,7 +3,11 @@ package piotrek.k.flats.Service;
 import java.time.ZonedDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import piotrek.k.flats.DTO.RealEstateDTO;
 import piotrek.k.flats.Model.RealEstate;
+import piotrek.k.flats.Model.RealEstateUser;
 import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Repository.IRealEstateInterface;
 
@@ -20,8 +25,47 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 	@Autowired
 	UserService userService;
 
-	public boolean itIsMyRealEstate(User user, RealEstate realEstate) {
-		return true;
+	@Autowired
+	RealEstateUserService rE_U_Service;
+
+	public List<RealEstate> findNotAssignedToMe() {
+		List<RealEstateUser> rE_U_List = rE_U_Service.getRealEstate_UserLoggedUser();
+		List<RealEstate> estates = new ArrayList<>();
+		for (RealEstateUser re_U : rE_U_List) {
+			estates.add(re_U.getRealEstate());
+		}
+
+		Set<RealEstate> hs = new HashSet<RealEstate>();
+		hs.addAll(estates);
+		estates.clear();
+		estates.addAll(hs);
+
+//		for (Long estateUser : estates) {
+//			System.out.println(estateUser);
+//		}
+//
+//		List<RealEstate> realEstates = findAll();
+//
+//		System.out.println("___________________");
+//		for (RealEstate estateUser : realEstates) {
+//			System.out.println(estateUser.getRealEstate_id());
+//		}
+//
+//		realEstates.removeAll(estates);
+////		for (RealEstate realEstate : realEstates) {
+////			if(estates.contains(realEstate.getRealEstate_id())){
+////				realEstates.remove(realEstate);
+////			}
+////		}
+////		
+//		
+//
+//		System.out.println("___________________");
+//		for (RealEstate estateUser : realEstates) {
+//			System.out.println(estateUser.getRealEstate_id());
+//		}
+
+		return estates;
 	}
 
 	public void addRealEstate(RealEstateDTO form) {
@@ -40,9 +84,20 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 		addOrUpdate(realEstate);
 	}
 
+	public boolean itIsMyRealEstate(User user, RealEstate realEstate) {
+		return realEstate.getSupplementBy().getId().equals(user.getId());
+	}
+
 	public void updateRealEstate(RealEstate realEstate, RealEstateDTO form) {
 		realEstate = initialize(realEstate, form);
 		addOrUpdate(realEstate);
+	}
+
+	public Boolean canIEdit(RealEstate realEstate) {
+		return (userService.isAdminLoggedUser() || itIsMyRealEstate(
+				userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName()),
+				realEstate));
+
 	}
 
 	private RealEstate initialize(RealEstate realEstate, RealEstateDTO form) {
