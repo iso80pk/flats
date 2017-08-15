@@ -18,6 +18,7 @@ import piotrek.k.flats.Model.RealEstate;
 import piotrek.k.flats.Model.RealEstateUser;
 import piotrek.k.flats.Model.User;
 import piotrek.k.flats.Repository.IRealEstateInterface;
+import piotrek.k.flats.Repository.RealEstateCriteriaRepo;
 
 @Service
 public class RealEstateService extends BaseService<IRealEstateInterface, RealEstate> {
@@ -26,46 +27,24 @@ public class RealEstateService extends BaseService<IRealEstateInterface, RealEst
 	UserService userService;
 
 	@Autowired
-	RealEstateUserService rE_U_Service;
+	RealEstateUserService realEstateUserService;
+
+	@Autowired
+	RealEstateCriteriaRepo estateCriteriaRepo;
 
 	public List<RealEstate> findNotAssignedToMe() {
-		List<RealEstateUser> rE_U_List = rE_U_Service.getRealEstate_UserLoggedUser();
-		List<RealEstate> estates = new ArrayList<>();
+		List<RealEstateUser> rE_U_List = realEstateUserService.getRealEstate_UserLoggedUser();
+		List<Long> estatesID = new ArrayList<>();
 		for (RealEstateUser re_U : rE_U_List) {
-			estates.add(re_U.getRealEstate());
+			estatesID.add(re_U.getRealEstate().getRealEstate_id());
 		}
 
-		Set<RealEstate> hs = new HashSet<RealEstate>();
-		hs.addAll(estates);
-		estates.clear();
-		estates.addAll(hs);
+		Set<Long> hs = new HashSet<Long>();
+		hs.addAll(estatesID);
+		estatesID.clear();
+		estatesID.addAll(hs);
 
-//		for (Long estateUser : estates) {
-//			System.out.println(estateUser);
-//		}
-//
-//		List<RealEstate> realEstates = findAll();
-//
-//		System.out.println("___________________");
-//		for (RealEstate estateUser : realEstates) {
-//			System.out.println(estateUser.getRealEstate_id());
-//		}
-//
-//		realEstates.removeAll(estates);
-////		for (RealEstate realEstate : realEstates) {
-////			if(estates.contains(realEstate.getRealEstate_id())){
-////				realEstates.remove(realEstate);
-////			}
-////		}
-////		
-//		
-//
-//		System.out.println("___________________");
-//		for (RealEstate estateUser : realEstates) {
-//			System.out.println(estateUser.getRealEstate_id());
-//		}
-
-		return estates;
+		return estateCriteriaRepo.getRealEstatesExcludingGivenIDList(estatesID);
 	}
 
 	public void addRealEstate(RealEstateDTO form) {

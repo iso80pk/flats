@@ -19,7 +19,7 @@
 		</div>
 	</div>
 
-	<c:if test="${empty realEstateUser}">
+	<c:if test="${empty realEstates}">
 
 		<div class="jumbotron">
 			<h3>Nie masz jeszcze żadnej nieruchomości do porównania</h3>
@@ -32,10 +32,10 @@
 		</div>
 	</c:if>
 
-	<c:if test="${not empty  realEstateUser}">
+	<c:if test="${not empty  realEstates}">
 		<div class=" col-md-offset-2">
-			<a class="btn btn-success" href="add" role="button">RANKING -
-				UZUPEŁNIĆ</a>
+			<a class="btn btn-success" href="add" role="button">Dodaj nową
+				nieruchomość</a>
 		</div>
 
 
@@ -44,8 +44,7 @@
 				<table class="table table-striped">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>[%]</th>
+							<th>#ID</th>
 							<th>Lokalizacja</th>
 							<th>Powierzchnia [m2]</th>
 							<th>Cena</th>
@@ -56,26 +55,25 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="RE_U" items="${realEstateUser}">
+						<c:forEach var="realEstate" items="${realEstates}">
 							<tr>
-								<td>${RE_U.rankedPosition}</td>
-									<td>${RE_U.adaptation}</td>
-								<td>${RE_U.realEstate.location}</td>
-								<td>${RE_U.realEstate.floorArea}</td>
-								<td>${RE_U.realEstate.price}</td>
-								<td>${RE_U.realEstate.numberOfRooms}</td>
+								<td>${realEstate.realEstate_id}</td>
+								<td>${realEstate.location}</td>
+								<td>${realEstate.floorArea}</td>
+								<td>${realEstate.price}</td>
+								<td>${realEstate.numberOfRooms}</td>
 								<td><a target="_blank"
-									href="${RE_U.realEstate.advertismentsLink}"> <span
+									href="${realEstate.advertismentsLink}"> <span
 										class="glyphicon glyphicon-globe" aria-hidden="true"></span>
 								</a></td>
 
 								<td><a class="btn btn-info"
-									href="details-${RE_U.realEstate.realEstate_id}" role="button">Szczegóły</a></td>
+									href="details-${realEstate.realEstate_id}" role="button">Szczegóły</a></td>
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<td><a class="btn btn-success"
-										href="edit-${RE_U.realEstate.realEstate_id}" role="button">Edytuj</a></td>
+										href="edit-${realEstate.realEstate_id}" role="button">Edytuj</a></td>
 									<td><a class="btn btn-danger"
-										href="delete-${RE_U.realEstate.realEstate_id}" role="button">Usuń</a></td>
+										href="delete-${realEstate.realEstate_id}" role="button">Usuń</a></td>
 								</sec:authorize>
 							</tr>
 						</c:forEach>

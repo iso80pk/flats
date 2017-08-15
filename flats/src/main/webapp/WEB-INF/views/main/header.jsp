@@ -47,14 +47,14 @@
 							<li class="dropdown"><a class="dropdown-toggle"
 								data-toggle="dropdown" href="#">Nieruchomości<span
 									class="caret"></span></a>
-								<ul class="dropdown-menu">									
+								<ul class="dropdown-menu">
 									<li><a href="/realEstate/">Dostępne oferty</a></li>
 									<li><a href="/realEstate/notAssignedToMe">Propozycje</a></li>
 									<li><a href="/ranking/">Ranking</a></li>
 								</ul></li>
-						</sec:authorize>
 
-						<li><a href="/userExpectations/">Moje oczekiwania</a></li>
+							<li><a href="/userExpectations/">Moje oczekiwania</a></li>
+						</sec:authorize>
 						<li><a href="#">O projekcie</a></li>
 
 					</ul>
