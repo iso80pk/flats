@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import piotrek.k.flats.Application.RealEstateCalculator;
 import piotrek.k.flats.DTO.ImportanceOfExpectationsDTO;
 import piotrek.k.flats.DTO.UserExpectationsDTO;
 import piotrek.k.flats.Model.ImportanceOfExpectations;
@@ -37,6 +38,9 @@ public class UserExpectationsController {
 	
 	@Autowired
 	private ImportanceOfExpectationsService importanceOfExpectationsService;
+	
+	@Autowired
+	private RealEstateCalculator calculator;
 
 	@ModelAttribute("form")
 	public UserExpectationsDTO getStatisticsForm() {
@@ -53,6 +57,7 @@ public class UserExpectationsController {
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		model.addAttribute("userExpectations", userExpectationsService.findByUser(user));
 		model.addAttribute("importanceOfExpectations", importanceOfExpectationsService.findByUser(user));
+		calculator.calculateAdaptationForAllUserPropositionsByUser(user);
 		return "userExpectations/userExpectationsDetail";
 	}
 

@@ -11,4 +11,5 @@ import piotrek.k.flats.Model.User;
 @Repository
 public interface IRealEstateUserInterface extends CrudRepository<RealEstateUser, Long> {
 	 List<RealEstateUser> findByUserOrderByRankedPosition(User user);
+	 List<RealEstateUser> findByUser(User user);
 }
