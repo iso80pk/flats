@@ -30,7 +30,6 @@ public class RealEstate {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long realEstate_id;
 
-	@NotNull
 	@Column(length = 50)
 	private String location;
 
@@ -44,7 +43,6 @@ public class RealEstate {
 	@NotNull
 	private Double price;
 
-	@NotNull
 	private Integer numberOfRooms;
 	private Integer howOld;
 

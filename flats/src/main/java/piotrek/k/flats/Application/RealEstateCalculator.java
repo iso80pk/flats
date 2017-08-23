@@ -41,19 +41,21 @@ public class RealEstateCalculator {
 		List<RealEstateUser> userRE = estateUserInterface.findByUser(user);
 		UserExpectations expectations = expectationsInterface.findByUser(user);
 		ImportanceOfExpectations importanceOfExpectations = iImportanceOfExpectationsInterface.findByUser(user);
+		if (expectations != null && priorities != null && importanceOfExpectations != null) {
 
-		Map<Integer, List<GroupHeplModel>> groups = getUserExpectationsInCorrectForm(expectations,
-				importanceOfExpectations);
+			Map<Integer, List<GroupHeplModel>> groups = getUserExpectationsInCorrectForm(expectations,
+					importanceOfExpectations);
 
-		for (RealEstateUser estateUser : userRE) {
-			calculateAdaptation(priorities, expectations, groups, estateUser);
-		}
+			for (RealEstateUser estateUser : userRE) {
+				calculateAdaptation(priorities, expectations, groups, estateUser);
+			}
 
-		userRE.sort((x1, x2) -> Float.compare(x2.getAdaptation(), x1.getAdaptation()));
+			userRE.sort((x1, x2) -> Float.compare(x2.getAdaptation(), x1.getAdaptation()));
 
-		for (int i = 0; i < userRE.size(); i++) {
-			userRE.get(i).setRankedPosition(i + 1);
-			estateUserInterface.save(userRE.get(i));
+			for (int i = 0; i < userRE.size(); i++) {
+				userRE.get(i).setRankedPosition(i + 1);
+				estateUserInterface.save(userRE.get(i));
+			}
 		}
 
 		// System.out.println(groups);
@@ -79,8 +81,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -92,8 +93,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -106,8 +106,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -120,8 +119,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -133,8 +131,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -146,8 +143,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -160,8 +156,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -173,8 +168,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -187,8 +181,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -201,8 +194,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -215,22 +207,19 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
 					break;
 				case Parking:
-					if (realEstate.getParking() == null
-							|| !expectations.getParking().equals(realEstate.getParking()))
+					if (realEstate.getParking() == null || !expectations.getParking().equals(realEstate.getParking()))
 						fulfillsAllUserExpectation = false;
 					else {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -243,8 +232,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}
@@ -257,8 +245,7 @@ public class RealEstateCalculator {
 						Priority priority = getPriorityByGroupDegree(priorities, groupDegree);
 						if (priority != null) {
 							adaptation += ((new Double(groupHeplModel.getImportanceValue())
-									/ new Double(groupHeplModel.getSumOfValuesInGroup()))
-									* priority.getImportance());
+									/ new Double(groupHeplModel.getSumOfValuesInGroup())) * priority.getImportance());
 						} else {
 						}
 					}

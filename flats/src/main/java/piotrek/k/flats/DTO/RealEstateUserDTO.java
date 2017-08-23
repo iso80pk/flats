@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 public class RealEstateUserDTO {
 
-	private RealEstateDTO realEstateDTO;
-
 	private String nammedByUser;
 	private Integer rankedPosition;
 	private Float adaptation; // dopasowanie

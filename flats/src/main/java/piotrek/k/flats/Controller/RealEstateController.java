@@ -50,12 +50,6 @@ public class RealEstateController {
 		return "realEstate/realEstatesList";
 	}
 
-	@RequestMapping(value = "/notAssignedToMe")
-	public String notAssignedToMe(Model model) {
-		model.addAttribute("realEstates", realEstateService.findNotAssignedToMe());
-		return "realEstate/notAssignedToMe";
-	}
-
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String realEstateFormGet(Model model) {
 		addRealEstateTypesToModel(model);

@@ -31,7 +31,6 @@ public class RealEstateDTO {
 	@DecimalMax(value = "99999999.99", message = "Maksymalna wartoœæ to 99999999.99")
 	private Double price;
 
-	@NotNull(message = "Pole jest wymagane")
 	@Min(value = 1, message = "Wartoœæ powinna byæ wiêksza od 0")
 	@Max(value = 100, message = "Wartoœæ powinna wynosiæ co najwy¿ej 100")
 	private Integer numberOfRooms;

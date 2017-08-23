@@ -10,7 +10,7 @@
 
 	<div class="row col-sm-offset-2">
 		<a href="/">Strona główna</a> > <a href="/realEstate/">
-			Nieruchomości do porównania</a>
+			Dostępne oferty</a>
 	</div>
 
 	<div class="row">

@@ -7,7 +7,7 @@
 <div class="container">
 	<div class="row col-sm-offset-2">
 		<a href="/">Strona główna</a> > <a href="/realEstate/">
-			Nieruchomości do porównania</a> > <a href="/realEstate/add"> Doddaj</a>
+			Dostępne oferty</a> > <a href="/realEstate/add"> Doddaj z ogłoszenia</a>
 	</div>
 
 	<div class="row">

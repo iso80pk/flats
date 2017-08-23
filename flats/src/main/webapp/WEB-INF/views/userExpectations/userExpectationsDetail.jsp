@@ -58,7 +58,12 @@
 									<th></th>
 									<th>Oczekiwania</th>
 									<th>Ważność</th>
-									<th>Grupa</th>
+									<th>Grupa <a class="btn btn-primary"
+						href="splitDefaultGroups" data-toggle="tooltip"
+						data-placement="bottom"
+						title="Podziel na grupy używając domyślnych przedziałów">
+							<span class="glyphicon glyphicon-flash"></span>
+					</a></th>
 
 								</tr>
 							</thead>
@@ -291,5 +296,9 @@
 			</c:if>
 
 		</div>
-
+<script>
+	$(document).ready(function() {
+		$('[data-toggle="tooltip"]').tooltip();
+	});
+</script>
 <jsp:include page="../main/footer.jsp" />

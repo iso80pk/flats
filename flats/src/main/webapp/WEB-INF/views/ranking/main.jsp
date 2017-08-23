@@ -26,7 +26,7 @@
 			<p>Po dodaniu nieruchomości będzie można wyłonić tę najlepszą do
 				zakupu</p>
 			<p>
-				<a class="btn btn-primary btn-lg" href="add" role="button">Dodaj
+				<a class="btn btn-primary btn-lg" href="/propositions/" role="button">Zacznij obserwować 
 					pierwszą nieruchomość</a>
 			</p>
 		</div>
@@ -34,8 +34,7 @@
 
 	<c:if test="${not empty  realEstateUser}">
 		<div class=" col-md-offset-2">
-			<a class="btn btn-success" href="add" role="button">RANKING -
-				UZUPEŁNIĆ</a>
+			<a class="btn btn-success" href="/propositions/" role="button">Poszukaj kolejnych ofert</a>
 		</div>
 
 
@@ -70,12 +69,12 @@
 								</a></td>
 
 								<td><a class="btn btn-info"
-									href="details-${RE_U.realEstate.realEstate_id}" role="button">Szczegóły</a></td>
+									href="/realEstate/details-${RE_U.realEstate.realEstate_id}" role="button">Szczegóły</a></td>
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<td><a class="btn btn-success"
-										href="edit-${RE_U.realEstate.realEstate_id}" role="button">Edytuj</a></td>
+										href="/realEstate/edit-${RE_U.realEstate.realEstate_id}" role="button">Edytuj</a></td>
 									<td><a class="btn btn-danger"
-										href="delete-${RE_U.realEstate.realEstate_id}" role="button">Usuń</a></td>
+										href="/realEstate/delete-${RE_U.realEstate.realEstate_id}" role="button">Usuń</a></td>
 								</sec:authorize>
 							</tr>
 						</c:forEach>

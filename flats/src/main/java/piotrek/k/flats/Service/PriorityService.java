@@ -1,7 +1,6 @@
 package piotrek.k.flats.Service;
 
 import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,10 @@ public class PriorityService extends BaseService<IPriorityRepo, Priority> {
 	@Autowired
 	UserService userService;
 
-	public void createFirstPriorityforLoggedUser(ImportanceOfExpectations iportance) {
+	public void createFirstPriorityforLoggedUser() {
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		daoInterface.delete(daoInterface.findByUser(user));
+		ImportanceOfExpectations iportance = importanceOfExpectationsService.findByUser(user);
 		Integer[] elementCount = firstInitImportanceObject(iportance);
 		Boolean zeroGroup = elementCount[3] != 0;
 		Integer goupCount = 0;
@@ -30,11 +32,10 @@ public class PriorityService extends BaseService<IPriorityRepo, Priority> {
 			if (el > 0)
 				goupCount++;
 
-		createGroup(goupCount, zeroGroup);
+		createGroup(goupCount, zeroGroup, user);
 	}
 
-	private void createGroup(Integer goupCount, Boolean zeroGroup) {
-		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+	private void createGroup(Integer goupCount, Boolean zeroGroup, User user) {
 		if (zeroGroup) {
 			Priority priority = new Priority(goupCount, null, 0.0, user);
 			daoInterface.save(priority);

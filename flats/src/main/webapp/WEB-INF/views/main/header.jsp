@@ -49,7 +49,7 @@
 									class="caret"></span></a>
 								<ul class="dropdown-menu">
 									<li><a href="/realEstate/">Dostępne oferty</a></li>
-									<li><a href="/realEstate/notAssignedToMe">Propozycje</a></li>
+									<li><a href="/propositions/">Propozycje</a></li>
 									<li><a href="/ranking/">Ranking</a></li>
 								</ul></li>
 

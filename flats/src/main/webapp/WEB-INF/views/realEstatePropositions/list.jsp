@@ -9,35 +9,24 @@
 <div class="container">
 
 	<div class="row col-sm-offset-2">
-		<a href="/">Strona główna</a> > <a href="/realEstate/">
-			Nieruchomości do porównania</a>
+		<a href="/">Strona główna</a> > <a href="/propositions/">
+			Propozycje nieruchomości</a>
 	</div>
 
 	<div class="row">
 		<div class="text-center">
-			<h2>Nieruchomości do porównania</h2>
+			<h2>Propozycje nieruchomości</h2>
 		</div>
 	</div>
 
 	<c:if test="${empty realEstates}">
 
 		<div class="jumbotron">
-			<h3>Nie masz jeszcze żadnej nieruchomości do porównania</h3>
-			<p>Po dodaniu nieruchomości będzie można wyłonić tę najlepszą do
-				zakupu</p>
-			<p>
-				<a class="btn btn-primary btn-lg" href="add" role="button">Dodaj
-					pierwszą nieruchomość</a>
-			</p>
+			<h3>Niestety nie mamy nic więcej do zaproponowania</h3>
 		</div>
 	</c:if>
 
 	<c:if test="${not empty  realEstates}">
-		<div class=" col-md-offset-2">
-			<a class="btn btn-success" href="add" role="button">Dodaj nową
-				nieruchomość</a>
-		</div>
-
 
 		<div class="row">
 			<div class="table-responsive col-md-8 col-md-offset-2">
@@ -69,6 +58,10 @@
 
 								<td><a class="btn btn-info"
 									href="details-${realEstate.realEstate_id}" role="button">Szczegóły</a></td>
+								<td><a class="btn btn-info"
+									href="add-${realEstate.realEstate_id}" role="button">Obserwuj</a></td>
+
+
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<td><a class="btn btn-success"
 										href="edit-${realEstate.realEstate_id}" role="button">Edytuj</a></td>

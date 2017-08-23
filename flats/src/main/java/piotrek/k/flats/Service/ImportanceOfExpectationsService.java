@@ -29,7 +29,7 @@ public class ImportanceOfExpectationsService
 		importanceOfExpectations.setUser(user);
 
 		importanceOfExpectations = addOrUpdate(importanceOfExpectations);
-		priorityService.createFirstPriorityforLoggedUser(importanceOfExpectations);
+		priorityService.createFirstPriorityforLoggedUser();
 	}
 
 	public void updateImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations,

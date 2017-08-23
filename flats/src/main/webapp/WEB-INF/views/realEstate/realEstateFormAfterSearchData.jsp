@@ -6,8 +6,8 @@
 <jsp:include page="../main/header.jsp" />
 <div class="container">
 	<div class="row col-sm-offset-2">
-		<a href="/">Strona główna</a> > <a href="/realEstate/">
-			Nieruchomości do porównania</a>
+		<a href="/">Strona główna</a> > <a href="/realEstate/"> Dostępne
+			oferty</a>
 	</div>
 	<div class="pull-right">
 		<a href="/realEstate/searchData">
@@ -29,10 +29,8 @@
 		class="form-horizontal" modelAttribute="form">
 		<div class="row">
 			<div class="col-sm-6">
-
-
 				<div class="form-group">
-					<label class="control-label col-sm-5">Lokalizacja * <a
+					<label class="control-label col-sm-5">Lokalizacja<a
 						href="javascript:void(0);" data-toggle="tooltip"
 						data-placement="bottom"
 						title="Informacja o lokalizacji. Maksymalnie 50 znaków."> <span
@@ -41,8 +39,8 @@
 
 					<div class="col-sm-7">
 						<form:input type="text" path="location" name="location"
-							maxlength="50" required="required" pattern=".{3,}"
-							class="form-control" placeholder="Podaj lokalizację" />
+							maxlength="50" pattern=".{3,}" class="form-control"
+							placeholder="Podaj lokalizację" />
 						<c:if test="${pageContext.request.method=='POST'}">
 							<form:errors path="location" class="my-form-error" />
 						</c:if>
@@ -97,7 +95,7 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-5">Ilość pokoi * <a
+					<label class="control-label col-sm-5">Ilość pokoi<a
 						href="javascript:void(0);" data-toggle="tooltip"
 						data-placement="bottom"
 						title="Ilośc pokoi. Nie wlicza się pomieszczeń typu kuchnia, łazienka, spiżarnia.. ">
@@ -106,7 +104,7 @@
 					</label>
 					<div class="col-sm-7">
 						<form:input type="number" min="1" step="1" max="100"
-							path="numberOfRooms" name="numberOfRooms" required="required"
+							path="numberOfRooms" name="numberOfRooms" 
 							class="form-control" placeholder="Podaj ilość pokoi" />
 						<c:if test="${pageContext.request.method=='POST'}">
 							<form:errors path="numberOfRooms" class="my-form-error" />
@@ -115,8 +113,8 @@
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-5">Wiek nieruchomości *
-						<a href="javascript:void(0);" data-toggle="tooltip"
+					<label class="control-label col-sm-5">Wiek nieruchomości <a
+						href="javascript:void(0);" data-toggle="tooltip"
 						data-placement="bottom"
 						title="Wiek nieruchomosci nalezy podac w latach. Wartość zaokrąglij do pełnych lat. Jeżeli jest młodsza niż rok podaj 0">
 							<span class="glyphicon glyphicon-info-sign"></span>
@@ -124,7 +122,7 @@
 					</label>
 					<div class="col-sm-7">
 						<form:input type="number" min="0" step="1" max="500" path="howOld"
-							name="howOld" required="required" class="form-control"
+							name="howOld" class="form-control"
 							placeholder="Podaj wiek mieszkania" />
 						<c:if test="${pageContext.request.method=='POST'}">
 							<form:errors path="howOld" class="my-form-error" />
@@ -148,6 +146,8 @@
 						</c:if>
 					</div>
 				</div>
+
+
 
 				<div class="form-group">
 					<label class="control-label col-sm-5">Garaż</label>
@@ -229,6 +229,7 @@
 					</div>
 				</div>
 
+
 			</div>
 			<div class="col-sm-6">
 
@@ -266,7 +267,8 @@
 							placeholder="wpisz aders" />
 					</div>
 				</div>
-				
+
+
 				<div class="form-group">
 					<label class="control-label col-sm-5"> numer telefonu
 						sprzedającego <a href="javascript:void(0);" data-toggle="tooltip"
@@ -276,31 +278,31 @@
 					</a>
 					</label>
 					<div class="col-sm-7">
-						<form:input path="sellerPhoneNumber"
-							name="sellerPhoneNumber" class="form-control"
-							placeholder="podaj numer" />
+						<form:input path="sellerPhoneNumber" name="sellerPhoneNumber"
+							class="form-control" placeholder="podaj numer" />
 					</div>
 				</div>
 
 				<div class="form-group">
-					<label class="control-label col-sm-5">Dostępne dla innych użytkowników<a href="javascript:void(0);" data-toggle="tooltip"
+					<label class="control-label col-sm-5">Dostępne dla innych
+						użytkowników<a href="javascript:void(0);" data-toggle="tooltip"
 						data-placement="bottom"
 						title="Odznaczenie tej opcji spowoduje, ze ogłoszenie nie będzie widoczne dla innych użytkowników.">
 							<span class="glyphicon glyphicon-info-sign"></span>
-					</a></label>
+					</a>
+					</label>
 					<div class="col-sm-7">
-						<form:checkbox path="availableToOtherUsers"  checked="true"/>
+						<form:checkbox path="availableToOtherUsers" checked="true" />
 					</div>
 				</div>
-
 			</div>
+
 		</div>
 		<div class="form-group row">
 			<div class="text-center">
 				<button type="submit" class="btn btn-default">Zatwierdź</button>
 			</div>
 		</div>
-
 	</form:form>
 
 
