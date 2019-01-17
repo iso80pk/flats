@@ -57,16 +57,16 @@
 								</a></td>
 
 								<td><a class="btn btn-info"
-									href="details-${realEstate.realEstate_id}" role="button">Szczegóły</a></td>
+									href="/realEstate/details-${realEstate.realEstate_id}" role="button">Szczegóły</a></td>
 								<td><a class="btn btn-info"
 									href="add-${realEstate.realEstate_id}" role="button">Obserwuj</a></td>
 
 
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<td><a class="btn btn-success"
-										href="edit-${realEstate.realEstate_id}" role="button">Edytuj</a></td>
+										href="/realEstate/edit-${realEstate.realEstate_id}" role="button">Edytuj</a></td>
 									<td><a class="btn btn-danger"
-										href="delete-${realEstate.realEstate_id}" role="button">Usuń</a></td>
+										href="/realEstate/delete-${realEstate.realEstate_id}" role="button">Usuń</a></td>
 								</sec:authorize>
 							</tr>
 						</c:forEach>

@@ -283,7 +283,7 @@
 									<a class="btn btn-primary" href="editImportanceOfExpectations" role="button">Edytuj oceny</a>
 									</div></td>
 									<td><div class="row my-center">
-									<a class="btn btn-primary" href="editImportanceOfExpectations" role="button">Edytuj grupy</a>
+									<a class="btn btn-primary" href="editGroup" role="button">Edytuj grupy</a>
 									</div></td>
    								</tr>
  							</tfoot>

@@ -120,14 +120,14 @@ public class UserExpectationsController {
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		UserExpectations userExpectations = userExpectationsService.findByUser(user);
 		model.addAttribute("userExpectations", userExpectations);
-		return "userExpectations/userImportanceOfExpectationsForm";
+		return "userExpectations/userImportanceOfExpectationsAddForm";
 	}
 
 	@RequestMapping(value = "/addImportanceOfExpectations", method = RequestMethod.POST)
 	public String addImportanceOfExpectationsPOST(
 			@ModelAttribute("importanceForm") @Valid ImportanceOfExpectationsDTO form, BindingResult result) {
 		if (result.hasErrors())
-			return "userExpectations/userImportanceOfExpectationsForm";
+			return "userExpectations/userImportanceOfExpectationsAddForm";
 		else {
 			importanceOfExpectationsService.addImportanceOfExpectations(form);
 			return "redirect:/userExpectations/";
@@ -150,7 +150,7 @@ public class UserExpectationsController {
 			UserExpectations userExpectations = userExpectationsService.findByUser(user);
 			model.addAttribute("userExpectations", userExpectations);
 			model.addAttribute("importanceForm", importanceOfExpectations);
-			return "userExpectations/userImportanceOfExpectationsForm";
+			return "userExpectations/userImportanceOfExpectationsUpdateForm";
 		}
 
 	}
@@ -165,7 +165,7 @@ public class UserExpectationsController {
 		}
 
 		if (result.hasErrors())
-			return "userExpectations/userImportanceOfExpectationsForm";
+			return "userExpectations/userImportanceOfExpectationsUpdateForm";
 		else {
 
 			importanceOfExpectationsService.updateImportanceOfExpectations(importanceOfExpectations, form);
@@ -175,23 +175,25 @@ public class UserExpectationsController {
 		}
 	}
 
-	// @RequestMapping(value = "/editGroup", method = RequestMethod.GET)
-	// public String editGroupGET(Model model) {
-	// User user =
-	// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-	// ImportanceOfExpectations importanceOfExpectations =
-	// importanceOfExpectationsService.findByUser(user);
-	// if (importanceOfExpectations == null)
-	// return "redirect:/userExpectations/addImportanceOfExpectations";
-	// else {
-	// UserExpectations userExpectations =
-	// userExpectationsService.findByUser(user);
-	// model.addAttribute("userExpectations", userExpectations);
-	// model.addAttribute("importanceForm", importanceOfExpectations);
-	// return "userExpectations/editGroup";
-	// }
-	//
-	// }
+	@RequestMapping(value = "/editGroup", method = RequestMethod.GET)
+	public String editGroupGET(Model model) {
+		// User user =
+		// userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		// ImportanceOfExpectations importanceOfExpectations =
+		// importanceOfExpectationsService.findByUser(user);
+		// if (importanceOfExpectations == null)
+		// return "redirect:/userExpectations/addImportanceOfExpectations";
+		// else {
+		// UserExpectations userExpectations =
+		// userExpectationsService.findByUser(user);
+		// model.addAttribute("userExpectations", userExpectations);
+		// model.addAttribute("importanceForm", importanceOfExpectations);
+		// return "userExpectations/editGroup";
+
+		// }
+
+		 return "userExpectations/editGroups";
+	}
 
 	private void addBooleanTypesToModel(Model model) {
 		Map<Boolean, String> booleanValues = new LinkedHashMap<Boolean, String>();

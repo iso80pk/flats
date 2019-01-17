@@ -23,37 +23,61 @@ public class ImportanceOfExpectationsService
 	}
 
 	public void addImportanceOfExpectations(ImportanceOfExpectationsDTO form) {
-		ImportanceOfExpectations importanceOfExpectations = new ImportanceOfExpectations();
-		importanceOfExpectations = initialize(importanceOfExpectations, form);
 		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
-		importanceOfExpectations.setUser(user);
-
-		importanceOfExpectations = addOrUpdate(importanceOfExpectations);
-		priorityService.createFirstPriorityforLoggedUser();
+		ImportanceOfExpectations importanceOfExpectations = daoInterface.findByUser(user);
+		if (importanceOfExpectations == null) {
+			importanceOfExpectations = new ImportanceOfExpectations();
+			importanceOfExpectations = initialize(importanceOfExpectations, form);
+			importanceOfExpectations.setUser(user);
+			importanceOfExpectations = addOrUpdate(importanceOfExpectations);
+			priorityService.createFirstPriorityforLoggedUser();
+		}
 	}
 
 	public void updateImportanceOfExpectations(ImportanceOfExpectations importanceOfExpectations,
 			ImportanceOfExpectationsDTO form) {
-		addOrUpdate(initialize(importanceOfExpectations, form));
+		User user = userService.getByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+		ImportanceOfExpectations existingImportanceOfExpectations = daoInterface.findByUser(user);
+		if (existingImportanceOfExpectations == null) {
+			addImportanceOfExpectations(form);
+		} else {
+			addOrUpdate(initialize(importanceOfExpectations, form));
+		}
 	}
 
 	private ImportanceOfExpectations initialize(ImportanceOfExpectations importanceOfExpectations,
 			ImportanceOfExpectationsDTO form) {
-		importanceOfExpectations.setLocation(form.getLocation());
-		importanceOfExpectations.setRealEstateType(form.getRealEstateType());
-		importanceOfExpectations.setFloorArea(form.getFloorArea());
-		importanceOfExpectations.setPrice(form.getPrice());
-		importanceOfExpectations.setNumberOfRooms(form.getNumberOfRooms());
-		importanceOfExpectations.setHowOld(form.getHowOld());
-		importanceOfExpectations.setFloor(form.getFloor());
-
-		importanceOfExpectations.setGarage(form.getGarage());
-		importanceOfExpectations.setParking(form.getParking());
-		importanceOfExpectations.setGarden(form.getGarden());
-		importanceOfExpectations.setCellar(form.getCellar());
-		importanceOfExpectations.setMonitoring(form.getMonitoring());
-		importanceOfExpectations.setLift(form.getLift());
-		importanceOfExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
+		if (form != null) {
+//			if (form.getLocation() != null)
+				importanceOfExpectations.setLocation(form.getLocation());
+//			if (form.getRealEstateType() != null)
+				importanceOfExpectations.setRealEstateType(form.getRealEstateType());
+//			if (form.getFloorArea() != null)
+				importanceOfExpectations.setFloorArea(form.getFloorArea());
+//			if (form.getPrice() != null)
+				importanceOfExpectations.setPrice(form.getPrice());
+//			if (form.getNumberOfRooms() != null)
+				importanceOfExpectations.setNumberOfRooms(form.getNumberOfRooms());
+//			if (form.getHowOld() != null)
+				importanceOfExpectations.setHowOld(form.getHowOld());
+//			if (form.getFloor() != null)
+				importanceOfExpectations.setFloor(form.getFloor());
+//			if (form.getGarage() != null)
+				importanceOfExpectations.setGarage(form.getGarage());
+//			if (form.getParking() != null)
+				importanceOfExpectations.setParking(form.getParking());
+//			if (form.getGarden() != null)
+				importanceOfExpectations.setGarden(form.getGarden());
+//			if (form.getCellar() != null)
+				importanceOfExpectations.setCellar(form.getCellar());
+//			if (form.getMonitoring() != null)
+				importanceOfExpectations.setMonitoring(form.getMonitoring());
+//			if (form.getLift() != null)
+				importanceOfExpectations.setLift(form.getLift());
+//			if (form.getAccessToPublicTransport() != null)
+				importanceOfExpectations.setAccessToPublicTransport(form.getAccessToPublicTransport());
+			return importanceOfExpectations;
+		}
 		return importanceOfExpectations;
 	}
 

@@ -23,7 +23,6 @@ public class Priority {
 	}
 
 	public Priority(Integer degree, String name, Double importance, User user) {
-		super();
 		this.degree = degree;
 		this.name = name;
 		this.importance = importance;
@@ -32,7 +31,7 @@ public class Priority {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 
 	private Integer degree;
 	private String name;

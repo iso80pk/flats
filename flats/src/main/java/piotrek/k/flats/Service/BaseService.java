@@ -3,15 +3,16 @@ package piotrek.k.flats.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public abstract class BaseService<T extends CrudRepository<M, Long>,M> {
+public abstract class BaseService<T extends JpaRepository<M, Long>,M> {
 	
 	@Autowired
-	protected T daoInterface;
+	public T daoInterface;
 	
 	public M findById(Long id) {
 		return  daoInterface.findOne(id);

@@ -288,7 +288,7 @@ public class RealEstateCalculator {
 
 	}
 
-	private Map<Integer, List<GroupHeplModel>> getUserExpectationsInCorrectForm(UserExpectations expectations,
+	public Map<Integer, List<GroupHeplModel>> getUserExpectationsInCorrectForm(UserExpectations expectations,
 			ImportanceOfExpectations importanceOfExpectations) {
 		Map<Integer, List<GroupHeplModel>> groups = new HashMap<>();
 

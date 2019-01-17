@@ -35,7 +35,7 @@ public class PriorityService extends BaseService<IPriorityRepo, Priority> {
 		createGroup(goupCount, zeroGroup, user);
 	}
 
-	private void createGroup(Integer goupCount, Boolean zeroGroup, User user) {
+	public void createGroup(Integer goupCount, Boolean zeroGroup, User user) {
 		if (zeroGroup) {
 			Priority priority = new Priority(goupCount, null, 0.0, user);
 			daoInterface.save(priority);
